@@ -1,0 +1,35 @@
+@startuml
+class Account {
+  accountId: UUID
+  name: String
+}
+class UserId {
+  id: UUID
+}
+class Record {
+  id: UUID
+  date: Date
+  detail: String
+  value: int
+}
+class Category {
+  id: UUID
+  name: String
+  upperCategory: String
+}
+enum RecordType{
+  INCOME
+  OUTCOME
+}
+class Planning {
+}
+class PlanningCategory {
+}
+
+Account "1" o--- "1" UserId
+Account "1" o-- "*" Record
+Account "1" - "*" Planning
+Record "1" - "1" Category
+Record "*" - "1" RecordType
+(Planning, Category) . PlanningCategory
+@enduml
