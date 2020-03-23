@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ppservices-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ppservices
+  template:
+    metadata:
+      labels:
+        app: ppservices
+    spec:
+      containers:
+      - name: ppservices
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: stage
+        image: pigplanclub/piggyplanner-services:stage
+        imagePullPolicy: Always
+#        resources:
+#          requests:
+#            memory: "512Mi"
+#            cpu: "1000m"
+#          limits:
+#            memory: "512Mi"
+#            cpu: "1000m"
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ppservices
+spec:
+  selector:
+    app: ppservices
+  ports:
+  - port: 8082
+    targetPort: 8080
+
