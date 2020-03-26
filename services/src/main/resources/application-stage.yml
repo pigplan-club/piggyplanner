@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: Services
   data:
     mongodb:
       authentication-database: admin
@@ -10,9 +8,7 @@ spring:
       port: 27017
       username: admin
 
-# Possible values for these keys are `default`, `xstream`, `java`, and `jackson`.
-axon:
-  serializer:
-    general: xstream #xstream is required to prevent errors recreating aggregates
-    events: jackson
-    messages: jackson
+axoniq:
+  axonserver:
+    devmode:
+      enabled: false
