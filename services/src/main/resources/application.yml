@@ -4,19 +4,11 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      database: test_db
+      database: piggyplanner
       host: localhost
       password: admin
       port: 27017
       username: admin
-
-# Possible values for these keys are `default`, `xstream`, `java`, and `jackson`.
-#axon:
-#  serializer:
-#    general: xstream #xstream is required to prevent errors recreating aggregates
-#    events: jackson
-#    messages: jackson
-
 
 axoniq:
   axonserver:

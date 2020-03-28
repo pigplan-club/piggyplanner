@@ -6,7 +6,7 @@ plugins {
     id("com.google.cloud.tools.jib") version "2.1.0"
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
-    kotlin("plugin.noarg") version "1.3.71"
+//    kotlin("plugin.noarg") version "1.3.71"
 }
 
 group = "club.piggyplanner"
@@ -20,6 +20,7 @@ repositories {
 dependencies {
     //Spring boot webflux
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+
     //Mongo DB
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 
@@ -35,7 +36,8 @@ dependencies {
     implementation("org.axonframework.extensions.mongo:axon-mongo:4.2")
 
     //GraphQL
-    implementation("com.expediagroup:graphql-kotlin-spring-server:2.0.0-RC12.1")
+    implementation("com.expediagroup:graphql-kotlin-spring-server:2.0.0")
+    implementation("com.expediagroup:graphql-kotlin-schema-generator:2.0.0")
 
     //Testing
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
@@ -68,6 +70,6 @@ jib {
     }
 }
 
-noArg {
-    annotation("org.axonframework.spring.stereotype.Aggregate")
-}
+//noArg {
+//    annotation("org.axonframework.spring.stereotype.Aggregate")
+//}
