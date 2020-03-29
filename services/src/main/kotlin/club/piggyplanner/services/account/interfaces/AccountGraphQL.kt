@@ -7,18 +7,23 @@ import com.expediagroup.graphql.spring.operations.Query
 import org.springframework.stereotype.Component
 import java.util.*
 
+@Component
+class Mutations(private val accountService: AccountService) : Mutation {
 
-//@Component
-//class Mutations(private val accountService: AccountService) : Mutation {
-//
-//    @GraphQLDescription("Create default Account to test")
-//    fun createDefaultAccount() =
-//            accountService.createDefaultAccount(UUID.randomUUID())
-//}
+    @GraphQLDescription("Create new Record")
+    fun createRecord(record : RecordDTO) =
+            accountService.createRecord(record)
+
+    //TODO: remove it
+    @GraphQLDescription("Create default Account to test")
+    fun createDefaultAccount() =
+            accountService.createDefaultAccount(UUID.randomUUID())
+}
 
 @Component
-class SimpleQuery : Query {
+class Queries : Query {
 
+    //TODO: remove it
     @GraphQLDescription("For testing, remove it after a real query is created")
     fun generateRandomUUID() = UUID.randomUUID()
 }

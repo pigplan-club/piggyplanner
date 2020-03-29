@@ -8,9 +8,9 @@ class UserId {
 }
 class Record {
   id: UUID
-  date: Date
-  detail: String
-  value: int
+  date: LocalDate
+  value: BigDecimal
+  memo: String
 }
 class Category {
   id: UUID
@@ -19,7 +19,7 @@ class Category {
 }
 enum RecordType{
   INCOME
-  OUTCOME
+  EXPENSE
 }
 class Planning {
 }

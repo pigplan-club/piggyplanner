@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      database: test_db
+      database: piggyplanner
       host: mongo
       password: admin
       port: 27017

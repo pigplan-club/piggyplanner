@@ -4,7 +4,7 @@ services:
   axonserver:
     image: axoniq/axonserver
     volumes:
-      - ./axon-server-data:/opt/axonserver/data/default
+      - ./axon-server-data:/eventdata
     environment:
       - AXONSERVER_HOSTNAME=axonserver
     ports:
