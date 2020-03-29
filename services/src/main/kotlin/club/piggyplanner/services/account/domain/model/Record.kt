@@ -7,5 +7,11 @@ import java.util.*
 data class Record(val id: RecordId = RecordId(UUID.randomUUID()),
                   val type: RecordType,
                   val dateTime: LocalDate,
-                  val value: BigDecimal,
-                  val memo: String? = "")
+                  val amount: BigDecimal,
+                  val memo: String? = ""){
+    init{
+        if (amount <= BigDecimal.ZERO){
+            throw IllegalArgumentException("Value must be grater than 0")
+        }
+    }
+}

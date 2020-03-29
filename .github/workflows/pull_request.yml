@@ -20,5 +20,7 @@ jobs:
       
     - name: Build backend app
       working-directory: ./services
-      run: ./gradlew build
+      run: |
+        export EXCLUDE_IT=true
+        ./gradlew build
 

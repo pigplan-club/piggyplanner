@@ -1,15 +1,12 @@
 package club.piggyplanner.services.account.domain.services
 
 import club.piggyplanner.services.account.domain.model.AccountId
-import club.piggyplanner.services.account.domain.model.Record
-import club.piggyplanner.services.account.domain.model.RecordType
 import club.piggyplanner.services.account.domain.model.UserId
 import club.piggyplanner.services.account.domain.operations.CreateDefaultAccount
 import club.piggyplanner.services.account.domain.operations.CreateRecord
+import club.piggyplanner.services.account.interfaces.RecordDTO
 import org.axonframework.commandhandling.gateway.CommandGateway
 import org.springframework.stereotype.Service
-import java.math.BigDecimal
-import java.time.LocalDate
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
@@ -20,9 +17,10 @@ class AccountService(private val commandGateway: CommandGateway) {
         return commandGateway.send(CreateDefaultAccount(UserId(userId)))
     }
 
-    fun createRecord(accountId: UUID, recordType: RecordType, date: LocalDate, value: BigDecimal, memo: String? = ""): CompletableFuture<Boolean> {
-        return commandGateway.send(CreateRecord(AccountId(accountId),
-            Record(type = recordType, dateTime = date, value = value, memo = memo)))
+    fun createRecord(recordDTO: RecordDTO): CompletableFuture<Boolean> {
+        return commandGateway.send(
+                CreateRecord(recordDTO.getAccountId(),
+                        recordDTO.getRecord()))
     }
 
 }

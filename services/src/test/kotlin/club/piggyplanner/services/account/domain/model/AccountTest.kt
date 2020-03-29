@@ -17,7 +17,7 @@ class AccountTest {
 
     @BeforeEach
     internal fun setUp() {
-        fixture = AggregateTestFixture<Account>(Account::class.java)
+        fixture = AggregateTestFixture(Account::class.java)
     }
 
     @Test
@@ -39,11 +39,7 @@ class AccountTest {
     internal fun `Create a correct Record`() {
         val userId = UUID.randomUUID()
         val accountId = UUID.randomUUID()
-        val recordType = RecordType.EXPENSE
-        val date = LocalDate.now()
-        val value = BigDecimal.valueOf(12.34)
-        val memo = "testing record"
-        val record = Record(type = recordType, dateTime = date, value = value, memo = memo)
+        val record = createRecordForTest(true)
         val createRecordCommand = CreateRecord(AccountId(accountId), record)
 
         fixture.given(DefaultAccountCreated(AccountId(accountId), UserId(userId), Account.DEFAULT_ACCOUNT_NAME))
@@ -56,15 +52,23 @@ class AccountTest {
     internal fun `Create a correct Record without memo`() {
         val userId = UUID.randomUUID()
         val accountId = UUID.randomUUID()
-        val recordType = RecordType.EXPENSE
-        val date = LocalDate.now()
-        val value = BigDecimal.valueOf(9876.12)
-        val record = Record(type = recordType, dateTime = date, value = value)
+        val record = createRecordForTest(false)
         val createRecordCommand = CreateRecord(AccountId(accountId), record)
 
         fixture.given(DefaultAccountCreated(AccountId(accountId), UserId(userId), Account.DEFAULT_ACCOUNT_NAME))
                 .`when`(createRecordCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEvents(RecordCreated(AccountId(accountId), record))
+    }
+
+    private fun createRecordForTest(withMemo: Boolean) : Record {
+        val recordType = RecordType.EXPENSE
+        val date = LocalDate.now()
+        var amount = BigDecimal.valueOf(9876.12)
+
+        if (withMemo)
+            return Record(type = recordType, dateTime = date, amount = amount, memo = "test memo")
+
+        return Record(type = recordType, dateTime = date, amount = amount)
     }
 }

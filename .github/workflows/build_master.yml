@@ -30,5 +30,6 @@ jobs:
       - name: Build backend app and create docker image
         working-directory: ./services
         run: |
-          export buildVersion=stage
+          export BUILD_VERSION=stage
+          export EXCLUDE_IT=true
           ./gradlew jib

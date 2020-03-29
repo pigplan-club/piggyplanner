@@ -6,7 +6,6 @@ plugins {
     id("com.google.cloud.tools.jib") version "2.1.0"
     kotlin("jvm") version "1.3.61"
     kotlin("plugin.spring") version "1.3.61"
-//    kotlin("plugin.noarg") version "1.3.71"
 }
 
 group = "club.piggyplanner"
@@ -66,10 +65,14 @@ tasks.withType<KotlinCompile> {
 jib {
     to {
         image = "pigplanclub/piggyplanner-services"
-        tags = setOf(System.getenv("buildVersion")?:"$version")
+        tags = setOf(System.getenv("BUILD_VERSION")?:"$version")
     }
 }
 
-//noArg {
-//    annotation("org.axonframework.spring.stereotype.Aggregate")
-//}
+tasks {
+    test {
+        if (System.getenv("EXCLUDE_IT") == "true") {
+            exclude("**/interfaces*")
+        }
+    }
+}
