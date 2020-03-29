@@ -42,4 +42,3 @@ jobs:
       run: |
         export EXCLUDE_IT=true
         ./gradlew build
-

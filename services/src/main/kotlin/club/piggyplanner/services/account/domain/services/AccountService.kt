@@ -13,6 +13,7 @@ import java.util.concurrent.CompletableFuture
 @Service
 class AccountService(private val commandGateway: CommandGateway) {
 
+    //TODO: Remove this when the saga pattern is implemented
     fun createDefaultAccount(userId: UUID): CompletableFuture<AccountId> {
         return commandGateway.send(CreateDefaultAccount(UserId(userId)))
     }
