@@ -10,11 +10,6 @@ spring:
       port: 27017
       username: admin
 
-axoniq:
-  axonserver:
-    devmode:
-      enabled: true
-
 graphql:
   packages:
     - "club.piggyplanner.services"

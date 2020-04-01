@@ -11,7 +11,7 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
-internal class Account {
+internal class Account() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
@@ -19,10 +19,8 @@ internal class Account {
     private lateinit var name: String
     private val records = mutableListOf<Record>()
 
-    constructor()
-
     @CommandHandler
-    constructor(command: CreateDefaultAccount) {
+    constructor(command: CreateDefaultAccount) : this() {
         AggregateLifecycle.apply(DefaultAccountCreated(command.accountId, command.userId, DEFAULT_ACCOUNT_NAME))
         command.records.forEach { AggregateLifecycle.apply(RecordCreated(command.accountId, it)) }
     }

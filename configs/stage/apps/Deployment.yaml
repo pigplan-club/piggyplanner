@@ -17,6 +17,8 @@ spec:
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: stage
+          - name: AXON_AXONSERVER_SERVERS
+            value: axonserver
         image: pigplanclub/piggyplanner-services:stage
         imagePullPolicy: Always
 #        resources:
@@ -27,7 +29,7 @@ spec:
 #            memory: "512Mi"
 #            cpu: "1000m"
         ports:
-        - containerPort: 8080
+        - containerPort: 8181
 
 ---
 
@@ -39,6 +41,5 @@ spec:
   selector:
     app: ppservices
   ports:
-  - port: 8082
-    targetPort: 8080
-
+  - port: 8181
+    targetPort: 8181

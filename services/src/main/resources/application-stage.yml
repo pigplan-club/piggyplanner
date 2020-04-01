@@ -3,12 +3,7 @@ spring:
     mongodb:
       authentication-database: admin
       database: piggyplanner
-      host: mongo
+      host: mongodb
       password: admin
       port: 27017
       username: admin
-
-axoniq:
-  axonserver:
-    devmode:
-      enabled: false
