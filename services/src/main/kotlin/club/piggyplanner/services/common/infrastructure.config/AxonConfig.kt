@@ -1,4 +1,4 @@
-package club.piggyplanner.services.core.infrastructure.config
+package club.piggyplanner.services.common.infrastructure.config
 
 import com.mongodb.MongoClient
 import org.axonframework.eventhandling.tokenstore.TokenStore
