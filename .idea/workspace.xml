@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/dev/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/dev/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/stage/apps/Deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/stage/apps/Deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/stage/base/axon-server.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/stage/base/axon-server.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configs/stage/base/mongodb.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/platform/stage/base/mongodb.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/services">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ZxrponnA50MgthMUF2VVe3vReq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pp" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="services.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="club.piggyplanner.services.ServicesApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="" />
+      <created>1585791771752</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585791771752</updated>
+      <workItem from="1585791773363" duration="300000" />
+      <workItem from="1585792273621" duration="273000" />
+      <workItem from="1585792963768" duration="424000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="395" y="124" width="800" height="677" key="#Project_Structure" timestamp="1585791862609">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="395" y="124" width="800" height="677" key="#Project_Structure/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791862609" />
+    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585793264590">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="583" y="220" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1585793264590" />
+    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
+    <state width="1554" height="219" key="GridCell.Tab.0.bottom" timestamp="1585793133987">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1585793133987" />
+    <state width="1554" height="219" key="GridCell.Tab.0.center" timestamp="1585793133986">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1585793133986" />
+    <state width="1554" height="219" key="GridCell.Tab.0.left" timestamp="1585793133984">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1585793133984" />
+    <state width="1554" height="219" key="GridCell.Tab.0.right" timestamp="1585793133986">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1585793133986" />
+    <state width="1554" height="219" key="GridCell.Tab.1.bottom" timestamp="1585793133988">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1585793133988" />
+    <state width="1554" height="219" key="GridCell.Tab.1.center" timestamp="1585793133988">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1585793133988" />
+    <state width="1554" height="219" key="GridCell.Tab.1.left" timestamp="1585793133987">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1585793133987" />
+    <state width="1554" height="219" key="GridCell.Tab.1.right" timestamp="1585793133988">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1554" height="219" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1585793133988" />
+    <state x="283" y="40" width="1024" height="845" key="SettingsEditor" timestamp="1585791939905">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="283" y="40" width="1024" height="845" key="SettingsEditor/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791939905" />
+    <state x="445" y="201" width="710" height="522" key="find.popup" timestamp="1585792025382">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="445" y="201" width="710" height="522" key="find.popup/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792025382" />
+    <state x="0" y="65" width="1590" height="796" key="new project wizard" timestamp="1585791853345">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="0" y="65" width="1590" height="796" key="new project wizard/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791853345" />
+  </component>
+</project>
