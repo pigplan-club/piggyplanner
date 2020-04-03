@@ -43,6 +43,7 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("com.shazam:shazamcrest:0.11")
 
     //Mongo db testing
     testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")

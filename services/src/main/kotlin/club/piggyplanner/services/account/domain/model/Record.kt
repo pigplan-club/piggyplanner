@@ -1,17 +1,45 @@
 package club.piggyplanner.services.account.domain.model
 
+import club.piggyplanner.services.account.domain.operations.ModifyRecord
+import club.piggyplanner.services.account.domain.operations.RecordModified
+import org.axonframework.commandhandling.CommandHandler
+import org.axonframework.eventsourcing.EventSourcingHandler
+import org.axonframework.modelling.command.AggregateLifecycle
+import org.axonframework.modelling.command.EntityId
 import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.*
 
-data class Record(val id: RecordId = RecordId(UUID.randomUUID()),
-                  val type: RecordType,
-                  val dateTime: LocalDate,
-                  val amount: BigDecimal,
-                  val memo: String? = ""){
-    init{
-        if (amount <= BigDecimal.ZERO){
-            throw IllegalArgumentException("Value must be grater than 0")
+class Record(@EntityId val recordId: RecordId,
+                  var type: RecordType,
+                  var date: LocalDate,
+                  var amount: BigDecimal,
+                  var memo: String? = "") {
+    init {
+        if (amount <= BigDecimal.ZERO) {
+            throw AmountInvalidException()
         }
+    }
+
+    @CommandHandler
+    fun handle(command: ModifyRecord): Boolean {
+        if (command.amount <= BigDecimal.ZERO) {
+            throw AmountInvalidException()
+        }
+
+        AggregateLifecycle.apply(RecordModified(Record(
+                recordId = command.recordId,
+                type = command.recordType,
+                date = command.date,
+                amount = command.amount,
+                memo = command.memo)))
+        return true
+    }
+
+    @EventSourcingHandler
+    fun on(event: RecordModified) {
+        this.type = event.record.type
+        this.date = event.record.date
+        this.amount = event.record.amount
+        this.memo = event.record.memo
     }
 }

@@ -8,6 +8,7 @@ import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
+import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
@@ -17,6 +18,8 @@ internal class Account() {
     private lateinit var accountId: AccountId
     private lateinit var userId: UserId
     private lateinit var name: String
+
+    @AggregateMember
     private val records = mutableListOf<Record>()
 
     @CommandHandler
@@ -27,7 +30,16 @@ internal class Account() {
 
     @CommandHandler
     fun handle(command: CreateRecord): Boolean {
-        AggregateLifecycle.apply(RecordCreated(command.accountId, command.record))
+        if (records.find { record -> record.recordId == command.recordId } != null)
+            throw RecordAlreadyAddedException()
+
+        AggregateLifecycle.apply(RecordCreated(command.accountId,
+                Record(
+                        recordId = command.recordId,
+                        type = command.recordType,
+                        date = command.date,
+                        amount = command.amount,
+                        memo = command.memo)))
         return true
     }
 
@@ -46,4 +58,5 @@ internal class Account() {
     companion object {
         const val DEFAULT_ACCOUNT_NAME = "Personal"
     }
+
 }

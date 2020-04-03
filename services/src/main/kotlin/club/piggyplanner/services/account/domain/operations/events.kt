@@ -13,3 +13,7 @@ data class DefaultAccountCreated(val accountId: AccountId,
 @Revision("1.0")
 data class RecordCreated(val accountId: AccountId,
                          val record: Record)
+
+
+@Revision("1.0")
+data class RecordModified(val record: Record)
