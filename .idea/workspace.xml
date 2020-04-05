@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/DTOs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build_master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build_master.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/pull_request.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pull_request.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/architecture/diagrams/UserAggregation.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/services/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/AccountService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/AccountDTOs.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/services/AccountServiceTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/architecture/diagrams/AccountAggregation.puml" beforeDir="false" afterPath="$PROJECT_DIR$/architecture/diagrams/AccountAggregation.puml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +57,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Development/AutoTraining/DDD/axon/ContactsAxonDemo" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/architecture/diagrams" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -83,8 +69,11 @@
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="club.piggyplanner.services.account.domain.model" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/architecture/diagrams" />
+    </key>
   </component>
-  <component name="RunManager" selected="Gradle.AccountGraphQL.verify modify record">
+  <component name="RunManager" selected="Spring Boot.ServicesApplication">
     <configuration name="AccountGraphQL" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -194,9 +183,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AccountGraphQL" />
         <item itemvalue="Gradle.AccountGraphQL.verify modify record" />
         <item itemvalue="Gradle.AccountGraphQL.verify create valid record" />
-        <item itemvalue="Gradle.AccountGraphQL" />
         <item itemvalue="Gradle.AccountTest" />
         <item itemvalue="Gradle.AccountTest.Modify a Record$services" />
       </list>
@@ -215,7 +204,8 @@
       <workItem from="1585791773363" duration="300000" />
       <workItem from="1585792273621" duration="273000" />
       <workItem from="1585792963768" duration="424000" />
-      <workItem from="1585877859543" duration="6494000" />
+      <workItem from="1585877859543" duration="7385000" />
+      <workItem from="1586022312669" duration="4186000" />
     </task>
     <servers />
   </component>
@@ -262,43 +252,43 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="533" y="211" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1600.873@0.27.1600.873" timestamp="1585878089040" />
-    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585879531629">
+    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586050740140">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1585879531629" />
+    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1586050740140" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
-    <state width="1554" height="203" key="GridCell.Tab.0.bottom" timestamp="1585884338437">
+    <state width="1554" height="73" key="GridCell.Tab.0.bottom" timestamp="1586053613453">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="203" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1585884338437" />
-    <state width="1554" height="203" key="GridCell.Tab.0.center" timestamp="1585884338437">
+    <state width="1554" height="73" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586053613453" />
+    <state width="1554" height="73" key="GridCell.Tab.0.center" timestamp="1586053613449">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="203" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1585884338437" />
-    <state width="1554" height="203" key="GridCell.Tab.0.left" timestamp="1585884338436">
+    <state width="1554" height="73" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1586053613449" />
+    <state width="1554" height="73" key="GridCell.Tab.0.left" timestamp="1586053613444">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="203" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1585884338436" />
-    <state width="1554" height="203" key="GridCell.Tab.0.right" timestamp="1585884338437">
+    <state width="1554" height="73" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1586053613444" />
+    <state width="1554" height="73" key="GridCell.Tab.0.right" timestamp="1586053613451">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="203" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1585884338437" />
-    <state width="1554" height="156" key="GridCell.Tab.1.bottom" timestamp="1585882171165">
+    <state width="1554" height="73" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1586053613451" />
+    <state width="1554" height="73" key="GridCell.Tab.1.bottom" timestamp="1586053613470">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="156" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1585882171165" />
-    <state width="1554" height="156" key="GridCell.Tab.1.center" timestamp="1585882171165">
+    <state width="1554" height="73" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586053613470" />
+    <state width="1554" height="73" key="GridCell.Tab.1.center" timestamp="1586053613457">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="156" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1585882171165" />
-    <state width="1554" height="156" key="GridCell.Tab.1.left" timestamp="1585882171164">
+    <state width="1554" height="73" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1586053613457" />
+    <state width="1554" height="73" key="GridCell.Tab.1.left" timestamp="1586053613455">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="156" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1585882171164" />
-    <state width="1554" height="156" key="GridCell.Tab.1.right" timestamp="1585882171165">
+    <state width="1554" height="73" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1586053613455" />
+    <state width="1554" height="73" key="GridCell.Tab.1.right" timestamp="1586053613459">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="156" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1585882171165" />
+    <state width="1554" height="73" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1586053613459" />
     <state x="526" y="155" width="538" height="614" key="RollbackChangesDialog" timestamp="1585880767122">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -315,10 +305,10 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="100" y="125" width="1400" height="675" maximized="true" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.27.1600.873@0.27.1600.873" timestamp="1585802950773" />
-    <state x="456" y="290" key="com.intellij.ide.util.TipDialog" timestamp="1585877859948">
+    <state x="456" y="290" key="com.intellij.ide.util.TipDialog" timestamp="1586022347471">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="456" y="290" key="com.intellij.ide.util.TipDialog/0.27.1600.873@0.27.1600.873" timestamp="1585877859948" />
+    <state x="456" y="290" key="com.intellij.ide.util.TipDialog/0.27.1600.873@0.27.1600.873" timestamp="1586022347471" />
     <state x="445" y="201" width="728" height="522" key="find.popup" timestamp="1585796906152">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
