@@ -1,10 +1,7 @@
 package club.piggyplanner.services.account.domain.model
 
-import club.piggyplanner.services.account.domain.operations.ModifyRecord
 import club.piggyplanner.services.account.domain.operations.RecordModified
-import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
-import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.EntityId
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -27,22 +24,6 @@ class Record(@EntityId val recordId: RecordId,
         if (amount <= BigDecimal.ZERO) {
             throw AmountInvalidException()
         }
-    }
-
-    @CommandHandler
-    fun handle(command: ModifyRecord): Boolean {
-        if (command.amount <= BigDecimal.ZERO) {
-            throw AmountInvalidException()
-        }
-
-        AggregateLifecycle.apply(RecordModified(Record(
-                recordId = command.recordId,
-                type = command.recordType,
-                categoryItem = command.categoryItem,
-                date = command.date,
-                amount = command.amount,
-                memo = command.memo)))
-        return true
     }
 
     @EventSourcingHandler

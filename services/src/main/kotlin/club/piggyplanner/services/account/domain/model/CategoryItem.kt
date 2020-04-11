@@ -4,6 +4,6 @@ import java.util.*
 
 data class CategoryItemId(val id: UUID)
 
-data class CategoryItem(val id: CategoryItemId,
+class CategoryItem(val categoryItemId: CategoryItemId,
                         val name: String,
                         val category: Category)

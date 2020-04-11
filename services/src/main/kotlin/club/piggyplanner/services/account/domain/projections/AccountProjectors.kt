@@ -7,8 +7,4 @@ import org.springframework.stereotype.Component
 
 @Component
 class Aggregate1Projector(private val categoryItemRepository: CategoryItemRepository) {
-
-    @QueryHandler
-    fun handle(query: FetchCategoryItem): CategoryItemProjection =
-            categoryItemRepository.findById(query.categoryItemId).orElseThrow(CategoryItemNotFoundException(query.categoryItemId))
 }

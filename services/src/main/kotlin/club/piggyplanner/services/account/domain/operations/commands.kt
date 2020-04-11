@@ -7,15 +7,25 @@ import java.time.LocalDate
 import java.util.*
 
 data class CreateDefaultAccount(val saverId: SaverId) {
-    @TargetAggregateIdentifier
     val accountId: AccountId = AccountId(UUID.randomUUID())
     val records: List<Record> = emptyList()
+    val categories: List<Category> = emptyList()
 }
+
+data class CreateCategory(@TargetAggregateIdentifier val accountId: AccountId,
+                          val categoryId: CategoryId,
+                          val name: String)
+
+data class CreateCategoryItem(@TargetAggregateIdentifier val accountId: AccountId,
+                              val categoryId: CategoryId,
+                              val categoryItemId: CategoryItemId,
+                              val name: String)
 
 data class CreateRecord(@TargetAggregateIdentifier val accountId: AccountId,
                         val recordId: RecordId,
                         val recordType: RecordType,
-                        val categoryItem: CategoryItem,
+                        val categoryId: CategoryId,
+                        val categoryItemId: CategoryItemId,
                         val date: LocalDate,
                         val amount: BigDecimal,
                         val memo: String? = "")
@@ -23,7 +33,8 @@ data class CreateRecord(@TargetAggregateIdentifier val accountId: AccountId,
 data class ModifyRecord(@TargetAggregateIdentifier val accountId: AccountId,
                         val recordId: RecordId,
                         val recordType: RecordType,
-                        val categoryItem: CategoryItem,
+                        val categoryId: CategoryId,
+                        val categoryItemId: CategoryItemId,
                         val date: LocalDate,
                         val amount: BigDecimal,
                         val memo: String? = "")

@@ -24,16 +24,12 @@ class AccountService(private val commandGateway: CommandGateway,
     }
 
     fun createRecord(recordDTO: RecordDTO): CompletableFuture<Boolean> {
-        val categoryItemProjection = queryGateway.query(FetchCategoryItem(recordDTO.categoryItemId),
-                ResponseTypes.instanceOf(CategoryItemProjection::class.java)).get()
-
-        val categoryItem = convertToCategoryItem(categoryItemProjection)
-
         return commandGateway.send(CreateRecord(
                 recordDTO.getAccountId(),
                 recordDTO.getRecordId(),
                 recordDTO.recordType,
-                categoryItem,
+                recordDTO.getCategoryId(),
+                recordDTO.getCategoryItemId(),
                 recordDTO.getDate(),
                 recordDTO.amount,
                 recordDTO.memo
@@ -41,29 +37,15 @@ class AccountService(private val commandGateway: CommandGateway,
     }
 
     fun modifyRecord(recordDTO: RecordDTO): CompletableFuture<Boolean> {
-        val categoryItemProjection = queryGateway.query(FetchCategoryItem(recordDTO.categoryItemId),
-                ResponseTypes.instanceOf(CategoryItemProjection::class.java)).get()
-
-        val categoryItem = convertToCategoryItem(categoryItemProjection)
-
         return commandGateway.send(ModifyRecord(
                 recordDTO.getAccountId(),
                 recordDTO.getRecordId(),
                 recordDTO.recordType,
-                categoryItem,
+                recordDTO.getCategoryId(),
+                recordDTO.getCategoryItemId(),
                 recordDTO.getDate(),
                 recordDTO.amount,
                 recordDTO.memo
         ))
-    }
-
-    private fun convertToCategoryItem(categoryItemProjection: CategoryItemProjection): CategoryItem {
-        return CategoryItem(
-                CategoryItemId(categoryItemProjection.id),
-                categoryItemProjection.name,
-                Category(
-                        CategoryId(categoryItemProjection.category.id),
-                        categoryItemProjection.category.name)
-        )
     }
 }

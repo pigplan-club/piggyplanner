@@ -1,14 +1,15 @@
 package club.piggyplanner.services.account.domain.model
 
 import java.util.*
-import java.util.function.Supplier
+
+class CategoryAlreadyAddedException : IllegalArgumentException("Category id duplicated")
+
+class CategoryItemAlreadyAddedException : IllegalArgumentException("Category Item id duplicated")
 
 class RecordAlreadyAddedException : IllegalArgumentException("Record id duplicated")
 
 class AmountInvalidException : IllegalArgumentException("Value must be greater than 0")
 
-class CategoryItemNotFoundException(val id: UUID) : Supplier<Exception> {
-    override fun get(): Exception {
-        return Exception("Category Item with id $id not found")
-    }
-}
+class CategoryNotFoundException(val id: UUID) : Exception("Category with id $id not found")
+
+class CategoryItemNotFoundException(val id: UUID) : Exception("Category Item with id $id not found")
