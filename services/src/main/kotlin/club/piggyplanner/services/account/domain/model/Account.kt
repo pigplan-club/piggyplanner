@@ -10,13 +10,14 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
+import java.util.*
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
 internal class Account() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
-    private lateinit var userId: UserId
+    private lateinit var saverId: SaverId
     private lateinit var name: String
 
     @AggregateMember
@@ -24,7 +25,7 @@ internal class Account() {
 
     @CommandHandler
     constructor(command: CreateDefaultAccount) : this() {
-        AggregateLifecycle.apply(DefaultAccountCreated(command.accountId, command.userId, DEFAULT_ACCOUNT_NAME))
+        AggregateLifecycle.apply(DefaultAccountCreated(command.accountId, command.saverId, DEFAULT_ACCOUNT_NAME))
         command.records.forEach { AggregateLifecycle.apply(RecordCreated(command.accountId, it)) }
     }
 
@@ -37,6 +38,7 @@ internal class Account() {
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
+                        categoryItem = command.categoryItem,
                         date = command.date,
                         amount = command.amount,
                         memo = command.memo)))
@@ -46,7 +48,7 @@ internal class Account() {
     @EventSourcingHandler
     fun on(event: DefaultAccountCreated) {
         this.accountId = event.accountId
-        this.userId = event.userId
+        this.saverId = event.saverId
         this.name = event.accountName
     }
 
@@ -58,5 +60,6 @@ internal class Account() {
     companion object {
         const val DEFAULT_ACCOUNT_NAME = "Personal"
     }
-
 }
+
+data class AccountId(val id: UUID)

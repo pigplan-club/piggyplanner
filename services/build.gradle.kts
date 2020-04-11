@@ -73,7 +73,7 @@ jib {
 tasks {
     test {
         if (System.getenv("EXCLUDE_IT") == "true") {
-            exclude("**/interfaces*")
+            exclude("**/presentation*")
         }
     }
 }

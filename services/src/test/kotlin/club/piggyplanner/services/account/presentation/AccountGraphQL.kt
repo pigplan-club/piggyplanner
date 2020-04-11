@@ -1,9 +1,7 @@
-package club.piggyplanner.services.account.interfaces
+package club.piggyplanner.services.account.presentation
 
-import club.piggyplanner.services.account.domain.model.Record
-import club.piggyplanner.services.account.domain.model.RecordId
-import club.piggyplanner.services.account.domain.model.RecordType
-import club.piggyplanner.services.account.domain.services.AccountService
+import club.piggyplanner.services.account.domain.model.*
+import club.piggyplanner.services.account.application.AccountService
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
@@ -64,7 +62,13 @@ internal class AccountGraphQL(
     }
 
     private fun createRecordMutation(mutationName: String, recordId: UUID = UUID.randomUUID()): String {
-        val record = Record(RecordId(recordId), RecordType.INCOME, LocalDate.now(), BigDecimal.TEN, "Test")
+        val categoryItem = CategoryItem(
+                CategoryItemId(UUID.randomUUID()),
+                "Energy",
+                Category(
+                        CategoryId(UUID.randomUUID()),
+                        "Utility"))
+        val record = Record(RecordId(recordId), RecordType.INCOME, categoryItem, LocalDate.now(), BigDecimal.TEN, "Test")
         return """
                mutation {
                  $mutationName(

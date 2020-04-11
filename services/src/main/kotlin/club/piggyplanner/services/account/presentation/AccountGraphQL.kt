@@ -1,6 +1,6 @@
-package club.piggyplanner.services.account.interfaces
+package club.piggyplanner.services.account.presentation
 
-import club.piggyplanner.services.account.domain.services.AccountService
+import club.piggyplanner.services.account.application.AccountService
 import com.expediagroup.graphql.annotations.GraphQLDescription
 import com.expediagroup.graphql.spring.operations.Mutation
 import com.expediagroup.graphql.spring.operations.Query
