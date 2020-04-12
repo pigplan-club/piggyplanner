@@ -1,6 +1,8 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.*
+import club.piggyplanner.services.common.domain.model.Entity
+import club.piggyplanner.services.common.domain.model.EntityState
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateIdentifier
@@ -8,15 +10,20 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.util.*
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
-internal class Account() {
+internal class Account() : Entity() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
     private lateinit var saverId: SaverId
     private lateinit var name: String
+
+    private var recordsQuotaByMonth: Int = -1
+    private var categoriesQuota: Int = -1
+    private var categoryItemsQuota: Int = -1
 
     @AggregateMember
     private val records = mutableListOf<Record>()
@@ -26,7 +33,14 @@ internal class Account() {
 
     @CommandHandler
     constructor(command: CreateDefaultAccount) : this() {
-        AggregateLifecycle.apply(DefaultAccountCreated(command.accountId, command.saverId, DEFAULT_ACCOUNT_NAME))
+        AggregateLifecycle.apply(DefaultAccountCreated(
+                command.accountId,
+                command.saverId,
+                DEFAULT_ACCOUNT_NAME,
+                command.recordsQuotaByMonth,
+                command.categoriesQuota,
+                command.categoryItemsQuota)
+        )
         command.records.forEach { AggregateLifecycle.apply(RecordCreated(command.accountId, it)) }
         command.categories.forEach { AggregateLifecycle.apply(CategoryCreated(command.accountId, it)) }
     }
@@ -35,6 +49,9 @@ internal class Account() {
     fun handle(command: CreateCategory): Boolean {
         if (categories.find { category -> category.categoryId == command.categoryId } != null)
             throw CategoryAlreadyAddedException()
+
+        if (categories.filter { it.state == EntityState.ENABLED }.size >= this.categoriesQuota)
+            throw CategoriesQuotaExceededException()
 
         AggregateLifecycle.apply(CategoryCreated(command.accountId,
                 Category(
@@ -49,6 +66,9 @@ internal class Account() {
     fun handle(command: CreateCategoryItem): Boolean {
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
+
+        if (category.exceedQuota(this.categoryItemsQuota))
+            throw CategoryItemsQuotaExceededException()
 
         if (category.getCategoryItem(command.categoryItemId) != null)
             throw CategoryItemAlreadyAddedException()
@@ -67,6 +87,9 @@ internal class Account() {
     fun handle(command: CreateRecord): Boolean {
         if (records.find { record -> record.recordId == command.recordId } != null)
             throw RecordAlreadyAddedException()
+
+        if (numberRecordsForSelectedMonth(command.date) >= recordsQuotaByMonth)
+            throw RecordsQuotaExceededException()
 
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
@@ -110,6 +133,9 @@ internal class Account() {
         this.accountId = event.accountId
         this.saverId = event.saverId
         this.name = event.accountName
+        this.recordsQuotaByMonth = event.recordsQuotaByMonth
+        this.categoriesQuota = event.categoriesQuota
+        this.categoryItemsQuota = event.categoryItemsQuota
     }
 
     @EventSourcingHandler
@@ -120,6 +146,16 @@ internal class Account() {
     @EventSourcingHandler
     fun on(event: CategoryCreated) {
         this.categories.add(event.category)
+    }
+
+    private fun numberRecordsForSelectedMonth(date: LocalDate): Int {
+        val firstDayOftheMonth = date.minusDays(date.dayOfMonth - 1.toLong())
+        val lastDayOftheMonth = date.minusDays(date.dayOfMonth.toLong()).plusMonths(1)
+
+        return records
+                .filter { it.state == EntityState.ENABLED }
+                .filter { it.date >= firstDayOftheMonth && it.date <= lastDayOftheMonth }
+                .size
     }
 
     companion object {

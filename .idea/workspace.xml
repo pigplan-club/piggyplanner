@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/piggyplanner.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/queries.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectionTypes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountRepositories.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/domain/model/Entity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/services/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/application/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/application/AccountService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/AccountId.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/RecordId.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/RecordType.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/UserId.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/SaverId.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/AccountService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/interfaces/DTOs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/queries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/queries.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectionTypes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectionTypes.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountRepositories.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountRepositories.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/interfaces/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +69,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -83,6 +97,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -92,32 +107,14 @@
       <recent name="club.piggyplanner.services.account.domain.model" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="club.piggyplanner.services.account.application" />
       <recent name="club.piggyplanner.services.account.domain.projections" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/architecture/diagrams" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServicesApplication">
-    <configuration name="AccountGraphQL.verify create valid record" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.interfaces.AccountGraphQL.verify create valid record&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.CategoryTest.Create a correct Category Item$services">
     <configuration name="AccountTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -137,12 +134,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AccountTest.Create a correct Record without memo$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AccountTest.Create a default Account$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.AccountTest.Create a correct Record without memo$services&quot;" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.AccountTest.Create a default Account$services&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -156,12 +153,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AccountTest.Create a duplicated record$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CategoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.AccountTest.Create a duplicated record$services&quot;" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.CategoryTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -175,12 +172,31 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="AccountTest.Modify a Record$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CategoryTest.Create a correct Category Item$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.AccountTest.Modify a Record$services&quot;" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.CategoryTest.Create a correct Category Item$services&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="RecordTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.RecordTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -203,11 +219,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.AccountGraphQL.verify create valid record" />
+        <item itemvalue="Gradle.CategoryTest.Create a correct Category Item$services" />
+        <item itemvalue="Gradle.CategoryTest" />
         <item itemvalue="Gradle.AccountTest" />
-        <item itemvalue="Gradle.AccountTest.Modify a Record$services" />
-        <item itemvalue="Gradle.AccountTest.Create a duplicated record$services" />
-        <item itemvalue="Gradle.AccountTest.Create a correct Record without memo$services" />
+        <item itemvalue="Gradle.AccountTest.Create a default Account$services" />
+        <item itemvalue="Gradle.RecordTest" />
       </list>
     </recent_temporary>
   </component>
@@ -228,7 +244,7 @@
       <workItem from="1586022312669" duration="6016000" />
       <workItem from="1586566064631" duration="208000" />
       <workItem from="1586566322294" duration="539000" />
-      <workItem from="1586566883951" duration="8486000" />
+      <workItem from="1586566883951" duration="30951000" />
     </task>
     <servers />
   </component>
@@ -258,6 +274,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="429" y="144" width="732" height="637" key="#Inspections" timestamp="1586642111098">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="429" y="144" width="732" height="637" key="#Inspections/0.27.1600.873@0.27.1600.873" timestamp="1586642111098" />
     <state x="395" y="124" width="800" height="677" key="#Project_Structure" timestamp="1585791862609">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -278,55 +298,63 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="533" y="240" width="524" height="444" key="#com.intellij.ide.util.PackageChooserDialog/0.27.1600.873@0.27.1600.873" timestamp="1585795669696" />
-    <state x="448" y="27" width="694" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586568688034">
+    <state x="257" y="387" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1586657028101">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="448" y="27" width="694" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1600.873@0.27.1600.873" timestamp="1586568688034" />
+    <state x="257" y="387" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.27.1600.873@0.27.1600.873" timestamp="1586657028101" />
+    <state x="448" y="27" width="694" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586651612370">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="448" y="27" width="694" height="873" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1600.873@0.27.1600.873" timestamp="1586651612370" />
     <state x="533" y="211" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585878089040">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="533" y="211" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1600.873@0.27.1600.873" timestamp="1585878089040" />
-    <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1586571538194">
+    <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1586575432732">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1586571538194" />
+    <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1586575432732" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586050740140">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1586050740140" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
-    <state width="1554" height="309" key="GridCell.Tab.0.bottom" timestamp="1586575348909">
+    <state width="1554" height="272" key="GridCell.Tab.0.bottom" timestamp="1586658234356">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586575348909" />
-    <state width="1554" height="309" key="GridCell.Tab.0.center" timestamp="1586575348909">
+    <state width="1554" height="272" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586658234356" />
+    <state width="1554" height="272" key="GridCell.Tab.0.center" timestamp="1586658234355">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1586575348909" />
-    <state width="1554" height="309" key="GridCell.Tab.0.left" timestamp="1586575348908">
+    <state width="1554" height="272" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1586658234355" />
+    <state width="1554" height="272" key="GridCell.Tab.0.left" timestamp="1586658234354">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1586575348908" />
-    <state width="1554" height="309" key="GridCell.Tab.0.right" timestamp="1586575348909">
+    <state width="1554" height="272" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1586658234354" />
+    <state width="1554" height="272" key="GridCell.Tab.0.right" timestamp="1586658234488">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1586575348909" />
-    <state width="1554" height="309" key="GridCell.Tab.1.bottom" timestamp="1586575348914">
+    <state width="1554" height="272" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1586658234488" />
+    <state width="1554" height="272" key="GridCell.Tab.1.bottom" timestamp="1586658234357">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586575348914" />
-    <state width="1554" height="309" key="GridCell.Tab.1.center" timestamp="1586575348910">
+    <state width="1554" height="272" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586658234357" />
+    <state width="1554" height="272" key="GridCell.Tab.1.center" timestamp="1586658234357">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1586575348910" />
-    <state width="1554" height="309" key="GridCell.Tab.1.left" timestamp="1586575348909">
+    <state width="1554" height="272" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1586658234357" />
+    <state width="1554" height="272" key="GridCell.Tab.1.left" timestamp="1586658234357">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1586575348909" />
-    <state width="1554" height="309" key="GridCell.Tab.1.right" timestamp="1586575348913">
+    <state width="1554" height="272" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1586658234357" />
+    <state width="1554" height="272" key="GridCell.Tab.1.right" timestamp="1586658234357">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1554" height="309" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1586575348913" />
+    <state width="1554" height="272" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1586658234357" />
+    <state x="383" y="199" width="824" height="526" key="IDE.errors.dialog" timestamp="1586657367034">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="383" y="199" width="824" height="526" key="IDE.errors.dialog/0.27.1600.873@0.27.1600.873" timestamp="1586657367034" />
     <state x="526" y="155" width="538" height="614" key="RollbackChangesDialog" timestamp="1585880767122">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -347,10 +375,10 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="456" y="290" key="com.intellij.ide.util.TipDialog/0.27.1600.873@0.27.1600.873" timestamp="1586022347471" />
-    <state x="445" y="201" width="728" height="522" key="find.popup" timestamp="1586568704767">
+    <state x="445" y="201" width="790" height="522" key="find.popup" timestamp="1586651393109">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="445" y="201" width="728" height="522" key="find.popup/0.27.1600.873@0.27.1600.873" timestamp="1586568704767" />
+    <state x="445" y="201" width="790" height="522" key="find.popup/0.27.1600.873@0.27.1600.873" timestamp="1586651393109" />
     <state x="445" y="201" width="710" height="522" key="find.popup/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792025382" />
     <state x="0" y="65" width="1590" height="796" key="new project wizard" timestamp="1585791853345">
       <screen x="0" y="27" width="1600" height="873" />
@@ -360,10 +388,14 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="462" y="179" width="665" height="566" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog/0.27.1600.873@0.27.1600.873" timestamp="1585881327886" />
-    <state x="463" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1585804463419">
+    <state x="630" y="235" width="330" height="455" key="refactoring.ChangeSignatureDialog" timestamp="1586653310453">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state x="463" y="212" width="672" height="678" key="search.everywhere.popup/0.27.1600.873@0.27.1600.873" timestamp="1585804463419" />
+    <state x="630" y="235" width="330" height="455" key="refactoring.ChangeSignatureDialog/0.27.1600.873@0.27.1600.873" timestamp="1586653310453" />
+    <state x="463" y="212" width="672" height="678" key="search.everywhere.popup" timestamp="1586619024154">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="463" y="212" width="672" height="678" key="search.everywhere.popup/0.27.1600.873@0.27.1600.873" timestamp="1586619024154" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -372,6 +404,11 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.axonframework/axon-modelling/4.3.1/c32ad6d016371184dd72c3fd6d996f520888e5b0/axon-modelling-4.3.1-sources.jar!/org/axonframework/modelling/command/inspection/AbstractChildEntityDefinition.java</url>
           <line>156</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt</url>
+          <line>69</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

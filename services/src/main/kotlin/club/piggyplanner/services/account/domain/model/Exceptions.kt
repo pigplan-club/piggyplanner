@@ -13,3 +13,9 @@ class AmountInvalidException : IllegalArgumentException("Value must be greater t
 class CategoryNotFoundException(val id: UUID) : Exception("Category with id $id not found")
 
 class CategoryItemNotFoundException(val id: UUID) : Exception("Category Item with id $id not found")
+
+class CategoriesQuotaExceededException : Exception("Categories quota exceeded")
+
+class CategoryItemsQuotaExceededException : Exception("Category items quota exceeded")
+
+class RecordsQuotaExceededException : Exception("Records quota exceeded")

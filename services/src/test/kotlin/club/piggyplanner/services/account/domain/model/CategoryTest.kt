@@ -1,9 +1,6 @@
 package club.piggyplanner.services.account.domain.model
 
-import club.piggyplanner.services.account.domain.operations.CategoryCreated
-import club.piggyplanner.services.account.domain.operations.CreateCategory
-import club.piggyplanner.services.account.domain.operations.CreateCategoryItem
-import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
+import club.piggyplanner.services.account.domain.operations.*
 import com.shazam.shazamcrest.matcher.Matchers.sameBeanAs
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
@@ -32,7 +29,7 @@ class CategoryTest {
                 categoryId = category.categoryId,
                 name = category.name)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
                 .`when`(createCategoryCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
@@ -52,7 +49,7 @@ class CategoryTest {
                 categoryItemId = categoryItem.categoryItemId,
                 name = categoryItem.name)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
                 .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                 .`when`(createCategoryItemCommand)
                 .expectSuccessfulHandlerExecution()
@@ -72,7 +69,7 @@ class CategoryTest {
                 name = category.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
                     .`when`(createCategoryCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)
@@ -93,7 +90,7 @@ class CategoryTest {
                 name = categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
                     .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {
@@ -115,7 +112,7 @@ class CategoryTest {
                 name = categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
                     .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {

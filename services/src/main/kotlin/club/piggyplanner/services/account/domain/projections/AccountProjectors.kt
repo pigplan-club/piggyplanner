@@ -1,10 +1,75 @@
 package club.piggyplanner.services.account.domain.projections
 
-import club.piggyplanner.services.account.domain.model.CategoryItemNotFoundException
-import club.piggyplanner.services.account.domain.operations.FetchCategoryItem
-import org.axonframework.queryhandling.QueryHandler
+import club.piggyplanner.services.account.domain.model.CategoryItem
+import club.piggyplanner.services.account.domain.operations.CategoryCreated
+import club.piggyplanner.services.account.domain.operations.CategoryItemCreated
+import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
+import club.piggyplanner.services.account.domain.operations.RecordCreated
+import org.axonframework.eventhandling.EventHandler
 import org.springframework.stereotype.Component
 
 @Component
-class Aggregate1Projector(private val categoryItemRepository: CategoryItemRepository) {
+class AccountProjector(private val accountStore: AccountStore,
+                       private val categoryStore: CategoryStore,
+                       private val categoryItemStore: CategoryItemStore,
+                       private val recordStore: RecordStore) {
+
+    @EventHandler
+    fun on(event: DefaultAccountCreated) {
+        val accountProjection = AccountProjection(
+                event.accountId.id,
+                event.accountName,
+                event.saverId.id,
+                listOf()
+        )
+        accountStore.save(accountProjection)
+    }
+
+    @EventHandler
+    fun on(event: CategoryCreated) {
+        val categoryProjection = CategoryProjection(
+                event.category.categoryId.id,
+                event.accountId.id,
+                event.category.name,
+                toCategoryItemProjections(event.category.categoryItems)
+        )
+        categoryStore.save(categoryProjection)
+    }
+
+    @EventHandler
+    fun on(event: CategoryItemCreated) {
+        val categoryItemProjection = CategoryItemProjection(
+                event.categoryItem.categoryItemId.id,
+                event.categoryItem.name,
+                event.categoryItem.category.categoryId.id
+        )
+        categoryItemStore.save(categoryItemProjection)
+    }
+
+    @EventHandler
+    fun on(event: RecordCreated) {
+        val recordProjection = RecordProjection(
+                event.record.recordId.id,
+                event.accountId.id,
+                event.record.type,
+                toCategoryItem(event.record.categoryItem),
+                event.record.date,
+                event.record.amount,
+                event.record.memo
+        )
+        recordStore.save(recordProjection)
+    }
+
+    private fun toCategoryItem(categoryItem: CategoryItem): CategoryItemProjection =
+            CategoryItemProjection(
+                    categoryItem.categoryItemId.id,
+                    categoryItem.name,
+                    categoryItem.category.categoryId.id
+            )
+
+
+    private fun toCategoryItemProjections(categoryItems: MutableList<CategoryItem>): List<CategoryItemProjection> =
+            categoryItems.map {
+                toCategoryItem(it)
+            }
 }

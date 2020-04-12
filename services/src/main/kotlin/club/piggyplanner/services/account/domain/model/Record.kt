@@ -1,6 +1,7 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.RecordModified
+import club.piggyplanner.services.common.domain.model.Entity
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.EntityId
 import java.math.BigDecimal
@@ -19,7 +20,8 @@ class Record(@EntityId val recordId: RecordId,
              var categoryItem: CategoryItem,
              var date: LocalDate,
              var amount: BigDecimal,
-             var memo: String? = "") {
+             var memo: String? = ""
+) : Entity() {
     init {
         if (amount <= BigDecimal.ZERO) {
             throw AmountInvalidException()
