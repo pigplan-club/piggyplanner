@@ -1,6 +1,7 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.*
+import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import club.piggyplanner.services.common.domain.model.Entity
 import club.piggyplanner.services.common.domain.model.EntityState
 import org.axonframework.commandhandling.CommandHandler
@@ -14,16 +15,16 @@ import java.time.LocalDate
 import java.util.*
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
-internal class Account() : Entity() {
+class Account() : Entity() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
     private lateinit var saverId: SaverId
     private lateinit var name: String
 
-    private var recordsQuotaByMonth: Int = -1
-    private var categoriesQuota: Int = -1
-    private var categoryItemsQuota: Int = -1
+    private var recordsQuotaByMonth : Int = -1
+    private var categoriesQuota : Int = -1
+    private var categoryItemsQuota : Int = -1
 
     @AggregateMember
     private val records = mutableListOf<Record>()
@@ -32,14 +33,14 @@ internal class Account() : Entity() {
     private val categories = mutableListOf<Category>()
 
     @CommandHandler
-    constructor(command: CreateDefaultAccount) : this() {
+    constructor(command: CreateDefaultAccount, accountConfigProperties: AccountConfigProperties) : this() {
         AggregateLifecycle.apply(DefaultAccountCreated(
                 command.accountId,
                 command.saverId,
-                DEFAULT_ACCOUNT_NAME,
-                command.recordsQuotaByMonth,
-                command.categoriesQuota,
-                command.categoryItemsQuota)
+                accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota)
         )
         command.records.forEach { AggregateLifecycle.apply(RecordCreated(command.accountId, it)) }
         command.categories.forEach { AggregateLifecycle.apply(CategoryCreated(command.accountId, it)) }
@@ -156,10 +157,6 @@ internal class Account() : Entity() {
                 .filter { it.state == EntityState.ENABLED }
                 .filter { it.date >= firstDayOftheMonth && it.date <= lastDayOftheMonth }
                 .size
-    }
-
-    companion object {
-        const val DEFAULT_ACCOUNT_NAME = "Personal"
     }
 }
 

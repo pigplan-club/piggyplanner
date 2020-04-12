@@ -2,6 +2,7 @@ package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.CreateDefaultAccount
 import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
+import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.axonframework.test.matchers.Matchers
@@ -11,9 +12,11 @@ import java.util.*
 
 class AccountTest {
     private lateinit var fixture: FixtureConfiguration<Account>
+    lateinit var accountConfigProperties: AccountConfigProperties
 
     @BeforeEach
     internal fun setUp() {
+        accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
         fixture = AggregateTestFixture(Account::class.java)
     }
 
@@ -22,20 +25,20 @@ class AccountTest {
         val userId = UUID.randomUUID()
         val createDefaultAccountCommand = CreateDefaultAccount(SaverId(userId))
 
-        fixture.givenNoPriorActivity()
+        fixture.registerInjectableResource(accountConfigProperties)
+                .givenNoPriorActivity()
                 .`when`(createDefaultAccountCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
                         com.shazam.shazamcrest.matcher.Matchers.sameBeanAs(
                                 DefaultAccountCreated(createDefaultAccountCommand.accountId,
                                         SaverId(userId),
-                                        Account.DEFAULT_ACCOUNT_NAME,
-                                        createDefaultAccountCommand.recordsQuotaByMonth,
-                                        createDefaultAccountCommand.categoriesQuota,
-                                        createDefaultAccountCommand.categoryItemsQuota
+                                        accountConfigProperties.defaultAccountName,
+                                        accountConfigProperties.recordsQuotaByMonth,
+                                        accountConfigProperties.categoriesQuota,
+                                        accountConfigProperties.categoryItemsQuota
                                 )
                         ))))
                 .expectResultMessagePayload(createDefaultAccountCommand.accountId)
     }
-
 }

@@ -1,3 +1,9 @@
+account:
+  default_account_name: Personal
+  records-quota-by-month: 2
+  categories-quota: 3
+  category-items-quota: 3
+
 graphql:
   packages:
     - "club.piggyplanner.services"

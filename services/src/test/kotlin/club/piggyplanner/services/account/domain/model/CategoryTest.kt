@@ -1,6 +1,10 @@
 package club.piggyplanner.services.account.domain.model
 
-import club.piggyplanner.services.account.domain.operations.*
+import club.piggyplanner.services.account.domain.operations.CategoryCreated
+import club.piggyplanner.services.account.domain.operations.CreateCategory
+import club.piggyplanner.services.account.domain.operations.CreateCategoryItem
+import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
+import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import com.shazam.shazamcrest.matcher.Matchers.sameBeanAs
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
@@ -13,9 +17,11 @@ import java.util.*
 
 class CategoryTest {
     private lateinit var fixture: FixtureConfiguration<Account>
+    lateinit var accountConfigProperties: AccountConfigProperties
 
     @BeforeEach
     internal fun setUp() {
+        accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
         fixture = AggregateTestFixture(Account::class.java)
     }
 
@@ -29,7 +35,13 @@ class CategoryTest {
                 categoryId = category.categoryId,
                 name = category.name)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(
+                AccountId(accountId),
+                SaverId(userId),
+                accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .`when`(createCategoryCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
@@ -49,7 +61,10 @@ class CategoryTest {
                 categoryItemId = categoryItem.categoryItemId,
                 name = categoryItem.name)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                 .`when`(createCategoryItemCommand)
                 .expectSuccessfulHandlerExecution()
@@ -69,7 +84,10 @@ class CategoryTest {
                 name = category.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                    accountConfigProperties.recordsQuotaByMonth,
+                    accountConfigProperties.categoriesQuota,
+                    accountConfigProperties.categoryItemsQuota))
                     .`when`(createCategoryCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)
@@ -90,7 +108,10 @@ class CategoryTest {
                 name = categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                    accountConfigProperties.recordsQuotaByMonth,
+                    accountConfigProperties.categoriesQuota,
+                    accountConfigProperties.categoryItemsQuota))
                     .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {
@@ -112,7 +133,10 @@ class CategoryTest {
                 name = categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                    accountConfigProperties.recordsQuotaByMonth,
+                    accountConfigProperties.categoriesQuota,
+                    accountConfigProperties.categoryItemsQuota))
                     .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {

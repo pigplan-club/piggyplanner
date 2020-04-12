@@ -1,3 +1,10 @@
+account:
+  default_account_name: Personal
+  records-quota-by-month: 100
+  categories-quota: 10
+  category-items-quota: 80
+
+
 spring:
   application:
     name: Services

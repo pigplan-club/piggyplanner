@@ -1,6 +1,7 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.*
+import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import com.shazam.shazamcrest.matcher.Matchers.sameBeanAs
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
@@ -15,9 +16,11 @@ import java.util.*
 
 class RecordTest {
     private lateinit var fixture: FixtureConfiguration<Account>
+    lateinit var accountConfigProperties: AccountConfigProperties
 
     @BeforeEach
     internal fun setUp() {
+        accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
         fixture = AggregateTestFixture(Account::class.java)
     }
 
@@ -36,7 +39,10 @@ class RecordTest {
                 amount = record.amount,
                 memo = record.memo)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
                 .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
                 .`when`(createRecordCommand)
@@ -61,7 +67,10 @@ class RecordTest {
                 amount = record.amount,
                 memo = record.memo)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
                 .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
                 .`when`(createRecordCommand)
@@ -86,7 +95,10 @@ class RecordTest {
                 amount = BigDecimal.ONE,
                 memo = "This is another note")
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
                 .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
                 .andGiven(RecordCreated(AccountId(accountId), record))
@@ -118,7 +130,10 @@ class RecordTest {
                 amount = recordModified.amount,
                 memo = recordModified.memo)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                accountConfigProperties.recordsQuotaByMonth,
+                accountConfigProperties.categoriesQuota,
+                accountConfigProperties.categoryItemsQuota))
                 .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
                 .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
                 .andGiven(RecordCreated(AccountId(accountId), record))
@@ -144,7 +159,10 @@ class RecordTest {
                 memo = record.memo)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), Account.DEFAULT_ACCOUNT_NAME, CreateDefaultAccount.DEFAULT_RECORDS_QUOTA_BY_MONTH, CreateDefaultAccount.DEFAULT_CATEGORIES_QUOTA, CreateDefaultAccount.DEFAULT_CATEGORY_ITEMS_QUOTA))
+            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
+                    accountConfigProperties.recordsQuotaByMonth,
+                    accountConfigProperties.categoriesQuota,
+                    accountConfigProperties.categoryItemsQuota))
                     .`when`(createRecordCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)

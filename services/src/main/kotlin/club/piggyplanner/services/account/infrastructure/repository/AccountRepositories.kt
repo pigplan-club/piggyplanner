@@ -1,4 +1,4 @@
-package club.piggyplanner.services.account.domain.projections
+package club.piggyplanner.services.account.infrastructure.repository
 
 import org.springframework.data.repository.CrudRepository
 import java.util.*

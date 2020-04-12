@@ -5,6 +5,7 @@ import club.piggyplanner.services.account.domain.operations.CategoryCreated
 import club.piggyplanner.services.account.domain.operations.CategoryItemCreated
 import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
 import club.piggyplanner.services.account.domain.operations.RecordCreated
+import club.piggyplanner.services.account.infrastructure.repository.*
 import org.axonframework.eventhandling.EventHandler
 import org.springframework.stereotype.Component
 
