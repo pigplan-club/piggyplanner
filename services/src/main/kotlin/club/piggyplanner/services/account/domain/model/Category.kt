@@ -25,14 +25,6 @@ class Category(@EntityId val categoryId: CategoryId,
         this.categoryItems.add(categoryItem)
     }
 
-    fun exceedQuota(categoryItemsQuota: Int) : Boolean {
-        println("categoryItemsQuota = $categoryItemsQuota  size = ${this.categoryItems.size}")
-        return this.categoryItems.filter { it.state == EntityState.ENABLED }.size >= categoryItemsQuota
-    }
-
-    companion object {
-        fun createDefaultCaegories() {
-
-        }
-    }
+    fun wasExceededQuota(categoryItemsQuota: Int) =
+            this.categoryItems.filter { it.state == EntityState.ENABLED }.size >= categoryItemsQuota
 }

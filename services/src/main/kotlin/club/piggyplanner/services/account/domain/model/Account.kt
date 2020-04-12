@@ -67,7 +67,7 @@ internal class Account() : Entity() {
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
 
-        if (category.exceedQuota(this.categoryItemsQuota))
+        if (category.wasExceededQuota(this.categoryItemsQuota))
             throw CategoryItemsQuotaExceededException()
 
         if (category.getCategoryItem(command.categoryItemId) != null)
