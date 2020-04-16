@@ -13,6 +13,6 @@ class AccountConfigurations {
             EventCountSnapshotTriggerDefinition(snapshotter, ACCOUNT_SNAPSHOT_THRESHOLD)
 
     companion object {
-        const val ACCOUNT_SNAPSHOT_THRESHOLD = 3
+        const val ACCOUNT_SNAPSHOT_THRESHOLD = 6
     }
 }

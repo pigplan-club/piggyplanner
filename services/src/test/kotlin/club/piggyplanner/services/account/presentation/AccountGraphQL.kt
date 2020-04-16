@@ -64,11 +64,8 @@ internal class AccountGraphQL(
     private fun createRecordMutation(mutationName: String, recordId: UUID = UUID.randomUUID()): String {
         val categoryItem = CategoryItem(
                 CategoryItemId(UUID.randomUUID()),
-                "Energy",
-                Category(
-                        CategoryId(UUID.randomUUID()),
-                        "Utility"))
-        val record = Record(RecordId(recordId), RecordType.INCOME, categoryItem, LocalDate.now(), BigDecimal.TEN, "Test")
+                "Energy")
+        val record = Record(RecordId(recordId), RecordType.INCOME, categoryItem, LocalDate.now(), RecordAmount(BigDecimal.TEN), "Test")
         return """
                mutation {
                  $mutationName(

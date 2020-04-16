@@ -41,8 +41,7 @@ class AccountProjector(private val accountStore: AccountStore,
     fun on(event: CategoryItemCreated) {
         val categoryItemProjection = CategoryItemProjection(
                 event.categoryItem.categoryItemId.id,
-                event.categoryItem.name,
-                event.categoryItem.category.categoryId.id
+                event.categoryItem.name
         )
         categoryItemStore.save(categoryItemProjection)
     }
@@ -53,9 +52,10 @@ class AccountProjector(private val accountStore: AccountStore,
                 event.record.recordId.id,
                 event.accountId.id,
                 event.record.type,
-                toCategoryItem(event.record.categoryItem),
+                event.categoryId.id,
+                event.record.categoryItem.categoryItemId.id,
                 event.record.date,
-                event.record.amount,
+                event.record.amount.value,
                 event.record.memo
         )
         recordStore.save(recordProjection)
@@ -64,10 +64,8 @@ class AccountProjector(private val accountStore: AccountStore,
     private fun toCategoryItem(categoryItem: CategoryItem): CategoryItemProjection =
             CategoryItemProjection(
                     categoryItem.categoryItemId.id,
-                    categoryItem.name,
-                    categoryItem.category.categoryId.id
+                    categoryItem.name
             )
-
 
     private fun toCategoryItemProjections(categoryItems: MutableList<CategoryItem>): List<CategoryItemProjection> =
             categoryItems.map {

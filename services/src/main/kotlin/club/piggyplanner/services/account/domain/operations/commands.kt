@@ -9,7 +9,6 @@ import java.util.*
 
 data class CreateDefaultAccount(@TargetAggregateIdentifier val saverId: SaverId) {
     val accountId: AccountId = AccountId(UUID.randomUUID())
-    val records: List<Record> = emptyList()
     val categories: List<Category> = getDefaultCategories()
 }
 

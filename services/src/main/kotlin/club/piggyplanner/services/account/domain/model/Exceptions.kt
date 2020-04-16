@@ -8,7 +8,7 @@ class CategoryItemAlreadyAddedException : IllegalArgumentException("Category Ite
 
 class RecordAlreadyAddedException : IllegalArgumentException("Record id duplicated")
 
-class AmountInvalidException : IllegalArgumentException("Value must be greater than 0")
+class AmountInvalidException : IllegalArgumentException("Amount must be greater than 0")
 
 class CategoryNotFoundException(val id: UUID) : Exception("Category with id $id not found")
 

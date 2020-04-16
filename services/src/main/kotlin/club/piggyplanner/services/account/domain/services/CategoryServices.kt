@@ -36,8 +36,7 @@ internal class CategoryServices {
                 category.addCategoryItem(
                         CategoryItem(
                                 CategoryItemId(UUID.randomUUID()),
-                                item.name,
-                                category
+                                item.name
                         ))
             }
 

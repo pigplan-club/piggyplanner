@@ -17,11 +17,14 @@ data class CategoryCreated(val accountId: AccountId,
 
 @Revision("1.0")
 data class CategoryItemCreated(val accountId: AccountId,
+                               val categoryId: CategoryId,
                                val categoryItem: CategoryItem)
 
 @Revision("1.0")
 data class RecordCreated(val accountId: AccountId,
+                         val categoryId: CategoryId,
                          val record: Record)
 
 @Revision("1.0")
-data class RecordModified(val record: Record)
+data class RecordModified(val accountId: AccountId,
+                          val record: Record)

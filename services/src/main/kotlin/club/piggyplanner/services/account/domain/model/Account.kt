@@ -10,7 +10,6 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
-import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
@@ -22,9 +21,9 @@ class Account() : Entity() {
     private lateinit var saverId: SaverId
     private lateinit var name: String
 
-    private var recordsQuotaByMonth : Int = -1
-    private var categoriesQuota : Int = -1
-    private var categoryItemsQuota : Int = -1
+    private var recordsQuotaByMonth: Int = -1
+    private var categoriesQuota: Int = -1
+    private var categoryItemsQuota: Int = -1
 
     @AggregateMember
     private val records = mutableListOf<Record>()
@@ -42,13 +41,16 @@ class Account() : Entity() {
                 accountConfigProperties.categoriesQuota,
                 accountConfigProperties.categoryItemsQuota)
         )
-        command.records.forEach { AggregateLifecycle.apply(RecordCreated(command.accountId, it)) }
+
         command.categories.forEach { AggregateLifecycle.apply(CategoryCreated(command.accountId, it)) }
     }
 
     @CommandHandler
     fun handle(command: CreateCategory): Boolean {
         if (categories.find { category -> category.categoryId == command.categoryId } != null)
+            throw CategoryAlreadyAddedException()
+
+        if (categories.find { category -> category.name.toLowerCase() == command.name.toLowerCase() } != null)
             throw CategoryAlreadyAddedException()
 
         if (categories.filter { it.state == EntityState.ENABLED }.size >= this.categoriesQuota)
@@ -74,11 +76,14 @@ class Account() : Entity() {
         if (category.getCategoryItem(command.categoryItemId) != null)
             throw CategoryItemAlreadyAddedException()
 
+        if (category.getCategoryItem(command.name) != null)
+            throw CategoryItemAlreadyAddedException()
+
         AggregateLifecycle.apply(CategoryItemCreated(command.accountId,
+                command.categoryId,
                 CategoryItem(
                         command.categoryItemId,
-                        command.name,
-                        category
+                        command.name
                 )))
 
         return true
@@ -98,34 +103,32 @@ class Account() : Entity() {
                 ?: throw CategoryItemNotFoundException(command.categoryItemId.id)
 
         AggregateLifecycle.apply(RecordCreated(command.accountId,
+                command.categoryId,
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
                         categoryItem = categoryItem,
                         date = command.date,
-                        amount = command.amount,
+                        amount = RecordAmount(command.amount),
                         memo = command.memo)))
         return true
     }
 
     @CommandHandler
     fun handle(command: ModifyRecord): Boolean {
-        if (command.amount <= BigDecimal.ZERO) {
-            throw AmountInvalidException()
-        }
-
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
         val categoryItem = category.getCategoryItem(command.categoryItemId)
                 ?: throw CategoryItemNotFoundException(command.categoryItemId.id)
 
-        AggregateLifecycle.apply(RecordModified(Record(
-                recordId = command.recordId,
-                type = command.recordType,
-                categoryItem = categoryItem,
-                date = command.date,
-                amount = command.amount,
-                memo = command.memo)))
+        AggregateLifecycle.apply(RecordModified(command.accountId,
+                Record(
+                        recordId = command.recordId,
+                        type = command.recordType,
+                        categoryItem = categoryItem,
+                        date = command.date,
+                        amount = RecordAmount(command.amount),
+                        memo = command.memo)))
         return true
     }
 
@@ -140,13 +143,13 @@ class Account() : Entity() {
     }
 
     @EventSourcingHandler
-    fun on(event: RecordCreated) {
-        this.records.add(event.record)
+    fun on(event: CategoryCreated) {
+        this.categories.add(event.category)
     }
 
     @EventSourcingHandler
-    fun on(event: CategoryCreated) {
-        this.categories.add(event.category)
+    fun on(event: RecordCreated) {
+        this.records.add(event.record)
     }
 
     private fun numberRecordsForSelectedMonth(date: LocalDate): Int {
@@ -154,10 +157,7 @@ class Account() : Entity() {
         val lastDayOftheMonth = date.minusDays(date.dayOfMonth.toLong()).plusMonths(1)
 
         return records
-                .filter { it.state == EntityState.ENABLED }
                 .filter { it.date >= firstDayOftheMonth && it.date <= lastDayOftheMonth }
                 .size
     }
 }
-
-data class AccountId(val id: UUID)

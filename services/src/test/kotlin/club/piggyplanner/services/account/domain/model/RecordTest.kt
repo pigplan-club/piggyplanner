@@ -1,8 +1,8 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.*
-import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import com.shazam.shazamcrest.matcher.Matchers.sameBeanAs
+import org.axonframework.test.AxonAssertionError
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.axonframework.test.matchers.Matchers
@@ -10,98 +10,78 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
 class RecordTest {
     private lateinit var fixture: FixtureConfiguration<Account>
-    lateinit var accountConfigProperties: AccountConfigProperties
 
     @BeforeEach
     internal fun setUp() {
-        accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
         fixture = AggregateTestFixture(Account::class.java)
     }
 
     @Test
     internal fun `Create a correct Record`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
         val record = createRecordForTest(true)
-        val createRecordCommand = CreateRecord(
-                accountId = AccountId(accountId),
-                recordId = record.recordId,
-                recordType = record.type,
-                categoryId = record.categoryItem.category.categoryId,
-                categoryItemId = record.categoryItem.categoryItemId,
-                date = record.date,
-                amount = record.amount,
-                memo = record.memo)
+        val createRecordCommand = generateRecordCommand(record)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
-                .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
-                .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(generateCategoryCreatedEvent())
+                .andGiven(generateCategoryItemCreatedEvent())
                 .`when`(createRecordCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
-                        sameBeanAs(RecordCreated(AccountId(accountId), record)))))
+                        sameBeanAs(
+                                RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
+                )))
                 .expectResultMessagePayload(true)
     }
 
     @Test
     internal fun `Create a correct Record without memo`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
         val record = createRecordForTest(false)
-        val createRecordCommand = CreateRecord(
-                accountId = AccountId(accountId),
-                recordId = record.recordId,
-                recordType = record.type,
-                categoryId = record.categoryItem.category.categoryId,
-                categoryItemId = record.categoryItem.categoryItemId,
-                date = record.date,
-                amount = record.amount,
-                memo = record.memo)
+        val createRecordCommand = generateRecordCommand(record)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
-                .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
-                .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(generateCategoryCreatedEvent())
+                .andGiven(generateCategoryItemCreatedEvent())
                 .`when`(createRecordCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
-                        sameBeanAs(RecordCreated(AccountId(accountId), record)))))
+                        sameBeanAs(
+                                RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
+                )))
                 .expectResultMessagePayload(true)
     }
 
     @Test
+    internal fun `Create a Record with an invalid amount`() {
+        assertThrows<AmountInvalidException>("Should throw AmountInvalidException") {
+            createRecordForTest(false, BigDecimal.valueOf(-5))
+        }
+    }
+
+    @Test
     internal fun `Create a duplicated record`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
         val record = createRecordForTest(false)
+
         val createNewRecordCommand = CreateRecord(
-                accountId = AccountId(accountId),
+                accountId = AccountId(CommonTest.accountId),
                 recordId = record.recordId,
                 recordType = RecordType.EXPENSE,
-                categoryId = record.categoryItem.category.categoryId,
-                categoryItemId = record.categoryItem.categoryItemId,
+                categoryId = CommonTest.category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
                 date = LocalDate.MIN,
                 amount = BigDecimal.ONE,
                 memo = "This is another note")
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
-                .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
-                .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
-                .andGiven(RecordCreated(AccountId(accountId), record))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(generateCategoryCreatedEvent())
+                .andGiven(generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
                 .`when`(createNewRecordCommand)
                 .expectException(RecordAlreadyAddedException::class.java)
                 .expectExceptionMessage("Record id duplicated")
@@ -109,60 +89,42 @@ class RecordTest {
 
     @Test
     internal fun `Modify a Record`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
         val record = createRecordForTest(false)
         val recordModified = Record(
                 record.recordId,
                 type = RecordType.INCOME,
                 date = record.date,
-                categoryItem = record.categoryItem,
-                amount = BigDecimal.TEN,
+                categoryItem = CommonTest.categoryItem,
+                amount = RecordAmount(BigDecimal.TEN),
                 memo = "New memo")
 
         val modifyRecordCommand = ModifyRecord(
-                accountId = AccountId(accountId),
+                accountId = AccountId(CommonTest.accountId),
                 recordId = recordModified.recordId,
                 recordType = recordModified.type,
-                categoryId = recordModified.categoryItem.category.categoryId,
-                categoryItemId = recordModified.categoryItem.categoryItemId,
+                categoryId = CommonTest.category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
                 date = recordModified.date,
-                amount = recordModified.amount,
+                amount = recordModified.amount.value,
                 memo = recordModified.memo)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
-                .andGiven(CategoryCreated(AccountId(accountId), record.categoryItem.category))
-                .andGiven(CategoryItemCreated(AccountId(accountId), record.categoryItem))
-                .andGiven(RecordCreated(AccountId(accountId), record))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(generateCategoryCreatedEvent())
+                .andGiven(generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
                 .`when`(modifyRecordCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
-                        sameBeanAs(RecordModified(recordModified)))))
+                        sameBeanAs(RecordModified(AccountId(CommonTest.accountId), recordModified)))))
     }
 
     @Test
     internal fun `Create a Record with not existing Account`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
         val record = createRecordForTest(true)
-        val createRecordCommand = CreateRecord(
-                accountId = AccountId(accountId),
-                recordId = record.recordId,
-                recordType = record.type,
-                categoryId = record.categoryItem.category.categoryId,
-                categoryItemId = record.categoryItem.categoryItemId,
-                date = record.date,
-                amount = record.amount,
-                memo = record.memo)
+        val createRecordCommand = generateRecordCommand(record)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                    accountConfigProperties.recordsQuotaByMonth,
-                    accountConfigProperties.categoriesQuota,
-                    accountConfigProperties.categoryItemsQuota))
+            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
                     .`when`(createRecordCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)
@@ -170,16 +132,58 @@ class RecordTest {
         }
     }
 
-    private fun createRecordForTest(withMemo: Boolean): Record {
+    @Test
+    internal fun `Error creating a Record exceeding quota by month`() {
+        val record = createRecordForTest(true)
+        val createNewRecordCommand = CreateRecord(
+                accountId = AccountId(CommonTest.accountId),
+                recordId = RecordId(UUID.randomUUID()),
+                recordType = RecordType.EXPENSE,
+                categoryId = CommonTest.category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                date = LocalDate.now(),
+                amount = BigDecimal.ONE,
+                memo = "This is another note")
+
+        try {
+            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                    .andGiven(generateCategoryCreatedEvent())
+                    .andGiven(generateCategoryItemCreatedEvent())
+                    .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
+                    .`when`(createNewRecordCommand)
+                    .expectSuccessfulHandlerExecution()
+        } catch (e: Error) {
+            assertNotNull("Expected error message", e.message)
+            assertEquals("Expected AssertionError class", e.javaClass, AxonAssertionError::class.java)
+        }
+    }
+
+    private fun generateRecordCommand(record: Record): CreateRecord {
+        return CreateRecord(
+                accountId = AccountId(CommonTest.accountId),
+                recordId = record.recordId,
+                recordType = record.type,
+                categoryId = CommonTest.category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                date = record.date,
+                amount = record.amount.value,
+                memo = record.memo)
+    }
+
+    private fun generateCategoryItemCreatedEvent() =
+            CategoryItemCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, CommonTest.categoryItem)
+
+    private fun generateCategoryCreatedEvent() =
+            CategoryCreated(AccountId(CommonTest.accountId), CommonTest.category)
+
+    private fun createRecordForTest(withMemo: Boolean, amount: BigDecimal? = BigDecimal.ONE): Record {
         val recordId = UUID.randomUUID()
         val recordType = RecordType.EXPENSE
         val date = LocalDate.now()
-        val categoryItem = CategoryTest.createCategoryItemForTest()
-        val amount = BigDecimal.valueOf(9876.12)
 
         if (withMemo)
-            return Record(recordId = RecordId(recordId), type = recordType, categoryItem = categoryItem, date = date, amount = amount, memo = "test memo")
+            return Record(recordId = RecordId(recordId), type = recordType, categoryItem = CommonTest.categoryItem, date = date, amount = RecordAmount(amount!!), memo = "test memo")
 
-        return Record(recordId = RecordId(recordId), type = recordType, categoryItem = categoryItem, date = date, amount = amount)
+        return Record(recordId = RecordId(recordId), type = recordType, categoryItem = CommonTest.categoryItem, date = date, amount = RecordAmount(amount!!))
     }
 }

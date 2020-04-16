@@ -1,10 +1,9 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.operations.CategoryCreated
+import club.piggyplanner.services.account.domain.operations.CategoryItemCreated
 import club.piggyplanner.services.account.domain.operations.CreateCategory
 import club.piggyplanner.services.account.domain.operations.CreateCategoryItem
-import club.piggyplanner.services.account.domain.operations.DefaultAccountCreated
-import club.piggyplanner.services.account.infrastructure.config.AccountConfigProperties
 import com.shazam.shazamcrest.matcher.Matchers.sameBeanAs
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
@@ -17,77 +16,57 @@ import java.util.*
 
 class CategoryTest {
     private lateinit var fixture: FixtureConfiguration<Account>
-    lateinit var accountConfigProperties: AccountConfigProperties
-
+    private lateinit var category : Category
+    
     @BeforeEach
     internal fun setUp() {
-        accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
         fixture = AggregateTestFixture(Account::class.java)
+        category = Category(CategoryId(UUID.randomUUID()), "Utility")
     }
 
     @Test
     internal fun `Create a correct Category`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
-        val category = createCategoryForTest()
         val createCategoryCommand = CreateCategory(
-                accountId = AccountId(accountId),
+                accountId = AccountId(CommonTest.accountId),
                 categoryId = category.categoryId,
                 name = category.name)
 
-        fixture.given(DefaultAccountCreated(
-                AccountId(accountId),
-                SaverId(userId),
-                accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
                 .`when`(createCategoryCommand)
                 .expectSuccessfulHandlerExecution()
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
-                        sameBeanAs(CategoryCreated(AccountId(accountId), category)))))
+                        sameBeanAs(CategoryCreated(AccountId(CommonTest.accountId), category)))))
                 .expectResultMessagePayload(true)
     }
 
     @Test
     internal fun `Create a correct Category Item`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
-        val categoryItem = createCategoryItemForTest()
-
         val createCategoryItemCommand = CreateCategoryItem(
-                accountId = AccountId(accountId),
-                categoryId = categoryItem.category.categoryId,
-                categoryItemId = categoryItem.categoryItemId,
-                name = categoryItem.name)
+                accountId = AccountId(CommonTest.accountId),
+                categoryId = category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                name = CommonTest.categoryItem.name)
 
-        fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                accountConfigProperties.recordsQuotaByMonth,
-                accountConfigProperties.categoriesQuota,
-                accountConfigProperties.categoryItemsQuota))
-                .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
                 .`when`(createCategoryItemCommand)
                 .expectSuccessfulHandlerExecution()
-//                .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
-//                        sameBeanAs(CategoryItemCreated(AccountId(accountId), categoryItem)))))
+                .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
+                        sameBeanAs(CategoryItemCreated(AccountId(CommonTest.accountId),
+                                category.categoryId,
+                                CommonTest.categoryItem)))))
                 .expectResultMessagePayload(true)
     }
 
     @Test
     internal fun `Create a Category with not existing Account`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
-        val category = createCategoryForTest()
         val createCategoryCommand = CreateCategory(
                 accountId = AccountId(UUID.randomUUID()),
                 categoryId = category.categoryId,
                 name = category.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                    accountConfigProperties.recordsQuotaByMonth,
-                    accountConfigProperties.categoriesQuota,
-                    accountConfigProperties.categoryItemsQuota))
+            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
                     .`when`(createCategoryCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)
@@ -97,22 +76,15 @@ class CategoryTest {
 
     @Test
     internal fun `Create a Category Item with not existing Account`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
-        val categoryItem = createCategoryItemForTest()
-
         val createCategoryItemCommand = CreateCategoryItem(
-                accountId = AccountId(accountId),
-                categoryId = categoryItem.category.categoryId,
-                categoryItemId = categoryItem.categoryItemId,
-                name = categoryItem.name)
+                accountId = AccountId(CommonTest.accountId),
+                categoryId = category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                name = CommonTest.categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                    accountConfigProperties.recordsQuotaByMonth,
-                    accountConfigProperties.categoriesQuota,
-                    accountConfigProperties.categoryItemsQuota))
-                    .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
+            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                    .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {
             assertNotNull("Expected error message", e.message)
@@ -122,35 +94,20 @@ class CategoryTest {
 
     @Test
     internal fun `Create a Category Item with not existing Category`() {
-        val userId = UUID.randomUUID()
-        val accountId = UUID.randomUUID()
-        val categoryItem = createCategoryItemForTest()
-
         val createCategoryItemCommand = CreateCategoryItem(
-                accountId = AccountId(accountId),
+                accountId = AccountId(CommonTest.accountId),
                 categoryId = CategoryId(UUID.randomUUID()),
-                categoryItemId = categoryItem.categoryItemId,
-                name = categoryItem.name)
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                name = CommonTest.categoryItem.name)
 
         try {
-            fixture.given(DefaultAccountCreated(AccountId(accountId), SaverId(userId), accountConfigProperties.defaultAccountName,
-                    accountConfigProperties.recordsQuotaByMonth,
-                    accountConfigProperties.categoriesQuota,
-                    accountConfigProperties.categoryItemsQuota))
-                    .andGiven(CategoryCreated(AccountId(accountId), categoryItem.category))
+            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                    .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
                     .`when`(createCategoryItemCommand)
         } catch (e: Error) {
             e.printStackTrace()
             assertNotNull("Expected error message", e.message)
             assertEquals("Expected CategoryNotFoundException class", e.javaClass, CategoryNotFoundException::class.java)
         }
-    }
-
-    companion object {
-        fun createCategoryForTest() =
-                Category(CategoryId(UUID.randomUUID()), "Utility")
-
-        fun createCategoryItemForTest() =
-                CategoryItem(CategoryItemId(UUID.randomUUID()), "Energy", createCategoryForTest())
     }
 }

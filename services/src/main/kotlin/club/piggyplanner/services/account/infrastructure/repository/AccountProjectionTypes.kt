@@ -18,7 +18,8 @@ data class AccountProjection(val id: UUID,
 data class RecordProjection(val id: UUID,
                             val accountId: UUID,
                             val type: RecordType,
-                            val categoryItem: CategoryItemProjection,
+                            val categoryId: UUID,
+                            val categoryItemId: UUID,
                             val date: LocalDate,
                             @Field(targetType = FieldType.DECIMAL128)
                             val amount: BigDecimal,
@@ -32,5 +33,4 @@ data class CategoryProjection(val id: UUID,
 
 @Document
 data class CategoryItemProjection(val id: UUID,
-                                  val name: String,
-                                  val categoryId: UUID)
+                                  val name: String)

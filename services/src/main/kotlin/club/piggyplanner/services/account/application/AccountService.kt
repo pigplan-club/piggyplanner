@@ -21,6 +21,9 @@ class AccountService(private val commandGateway: CommandGateway,
         return commandGateway.send(CreateDefaultAccount(SaverId(saverId)))
     }
 
+    fun createCategory(){
+    }
+
     fun createRecord(recordDTO: RecordDTO): CompletableFuture<Boolean> {
         return commandGateway.send(CreateRecord(
                 recordDTO.getAccountId(),
