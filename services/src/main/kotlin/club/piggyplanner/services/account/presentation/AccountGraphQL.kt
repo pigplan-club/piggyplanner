@@ -1,6 +1,6 @@
-package club.piggyplanner.services.account.interfaces
+package club.piggyplanner.services.account.presentation
 
-import club.piggyplanner.services.account.domain.services.AccountService
+import club.piggyplanner.services.account.application.AccountService
 import com.expediagroup.graphql.annotations.GraphQLDescription
 import com.expediagroup.graphql.spring.operations.Mutation
 import com.expediagroup.graphql.spring.operations.Query
@@ -11,8 +11,13 @@ import java.util.*
 class Mutations(private val accountService: AccountService) : Mutation {
 
     @GraphQLDescription("Create new Record")
-    fun createRecord(record : RecordDTO) =
-            accountService.createRecord(record)
+    fun createRecord(recordDTO: RecordDTO) =
+            accountService.createRecord(recordDTO)
+
+    @GraphQLDescription("Modify an existing Record")
+    fun modifyRecord(recordDTO: RecordDTO) =
+            accountService.modifyRecord(recordDTO)
+
 
     //TODO: remove it
     @GraphQLDescription("Create default Account to test")

@@ -1,0 +1,60 @@
+@startuml
+class User <<Aggregate>> {
+  userId: userId
+  username: String
+  salt: String
+}
+class UserId<<ValueObject>>{
+  id: UUID
+}
+class Account<<Entity>> {
+  accountId: AccountId
+  name: String
+}
+class AccountId<<ValueObject>>{
+  id: UUID
+}
+class Record<<Entity>> {
+  recordId: RecordId
+  date: LocalDate
+  value: BigDecimal
+  memo: String
+}
+class RecordId<<ValueObject>>{
+  id: UUID
+}
+class Category<<Entity>> {
+  categoryId: CategoryId
+  name: String
+}
+class CategoryId<<ValueObject>>{
+  id: UUID
+}
+enum RecordType{
+  INCOME
+  EXPENSE
+}
+class Planning<<Entity>> {
+  planningId: PlanningId
+  iniDate: LocalDate
+  endDate: LocalDate
+}
+class PlanningId<<ValueObject>>{
+  id: UUID
+}
+class PlanningCategory {
+  plannedValue: BigDecimal
+}
+
+UserId -* User
+User "1" o-- "1..*" Account
+AccountId -* Account
+Account "1" o-- "*" Record
+Account "1" - "*" Planning
+RecordId -* Record
+Record "1" - "1" Category
+Record "*" - "1" RecordType
+(Planning, Category) . PlanningCategory
+Planning *- PlanningId
+CategoryId -* Category
+@enduml

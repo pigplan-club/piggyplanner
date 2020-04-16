@@ -1,2 +1,2 @@
-/.idea/
-/configs/axon-server-data/
+/platform/dev/axon-server-data/
+/platform/dev/mongo-data/
