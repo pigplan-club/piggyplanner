@@ -3,7 +3,7 @@ name: pull_request
 on: [pull_request]
 
 jobs:
-  test-and-build-backend:
+  test-backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -12,6 +12,6 @@ jobs:
         working-directory: ./platform/dev
         run: docker-compose up -d
 
-      - name: Test backend
+      - name: Test and build
         working-directory: ./services
         run: ./gradlew test build
