@@ -8,7 +8,7 @@ import org.axonframework.modelling.command.EntityId
 
 class Category(@EntityId val categoryId: CategoryId,
                var name: String) : Entity() {
-    var categoryItems = mutableListOf<CategoryItem>()
+    var categoryItems = mutableSetOf<CategoryItem>()
 
     @EventSourcingHandler
     fun on(event: CategoryItemCreated) {
@@ -25,8 +25,8 @@ class Category(@EntityId val categoryId: CategoryId,
     fun getCategoryItem(categoryItemIdToFind: CategoryItemId) =
             categoryItems.find { categoryItem -> categoryItem.categoryItemId == categoryItemIdToFind }
 
-    fun getCategoryItem(categoryItemNameToFind: String) =
-            categoryItems.find { categoryItem -> categoryItem.name == categoryItemNameToFind }
+    fun containsCategoryItem(categoryItemToFind: CategoryItem) =
+            categoryItems.contains(categoryItemToFind)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -34,7 +34,7 @@ class Category(@EntityId val categoryId: CategoryId,
 
         other as Category
 
-        if (categoryId != other.categoryId) return false
+        if (categoryId.id != other.categoryId.id) return false
         if (name.toLowerCase() != other.name.toLowerCase()) return false
 
         return true
@@ -45,6 +45,4 @@ class Category(@EntityId val categoryId: CategoryId,
         result = 31 * result + name.hashCode()
         return result
     }
-
-
 }

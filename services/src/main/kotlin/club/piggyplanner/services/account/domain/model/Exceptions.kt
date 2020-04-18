@@ -2,11 +2,11 @@ package club.piggyplanner.services.account.domain.model
 
 import java.util.*
 
-class CategoryAlreadyAddedException : IllegalArgumentException("Category id duplicated")
+class CategoryAlreadyAddedException : IllegalArgumentException("Category duplicated")
 
-class CategoryItemAlreadyAddedException : IllegalArgumentException("Category Item id duplicated")
+class CategoryItemAlreadyAddedException : IllegalArgumentException("Category Item duplicated")
 
-class RecordAlreadyAddedException : IllegalArgumentException("Record id duplicated")
+class RecordAlreadyAddedException : IllegalArgumentException("Record duplicated")
 
 class AmountInvalidException : IllegalArgumentException("Amount must be greater than 0")
 

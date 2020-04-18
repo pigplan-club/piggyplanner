@@ -1,0 +1,19 @@
+@startuml
+class CategoryItemId<<ValueObject>>{
+  id: UUID
+}
+class Planning<<Entity>> {
+  planningId: PlanningId
+  iniDate: LocalDate
+  endDate: LocalDate
+}
+class PlanningId<<ValueObject>>{
+  id: UUID
+}
+class PlanningCategoryItem {
+  plannedValue: BigDecimal
+}
+
+(Planning, CategoryItemId) . PlanningCategoryItem
+PlanningId -* Planning
+@enduml

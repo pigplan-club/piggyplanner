@@ -16,8 +16,8 @@ import java.util.*
 
 class CategoryTest {
     private lateinit var fixture: FixtureConfiguration<Account>
-    private lateinit var category : Category
-    
+    private lateinit var category: Category
+
     @BeforeEach
     internal fun setUp() {
         fixture = AggregateTestFixture(Account::class.java)
@@ -59,6 +59,36 @@ class CategoryTest {
     }
 
     @Test
+    internal fun `Create a duplicated Category`() {
+        val createCategoryCommand = CreateCategory(
+                accountId = AccountId(CommonTest.accountId),
+                categoryId = category.categoryId,
+                name = category.name)
+
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
+                .`when`(createCategoryCommand)
+                .expectExceptionMessage("Category duplicated")
+                .expectException(CategoryAlreadyAddedException::class.java)
+    }
+
+    @Test
+    internal fun `Create a duplicated Category Item`() {
+        val createCategoryItemCommand = CreateCategoryItem(
+                accountId = AccountId(CommonTest.accountId),
+                categoryId = category.categoryId,
+                categoryItemId = CommonTest.categoryItem.categoryItemId,
+                name = CommonTest.categoryItem.name)
+
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
+                .andGiven(CategoryItemCreated(AccountId(CommonTest.accountId), category.categoryId, CommonTest.categoryItem))
+                .`when`(createCategoryItemCommand)
+                .expectExceptionMessage("Category Item duplicated")
+                .expectException(CategoryItemAlreadyAddedException::class.java)
+    }
+
+    @Test
     internal fun `Create a Category with not existing Account`() {
         val createCategoryCommand = CreateCategory(
                 accountId = AccountId(UUID.randomUUID()),
@@ -94,20 +124,17 @@ class CategoryTest {
 
     @Test
     internal fun `Create a Category Item with not existing Category`() {
+        val newCategoryIdUUID = UUID.randomUUID()
         val createCategoryItemCommand = CreateCategoryItem(
                 accountId = AccountId(CommonTest.accountId),
-                categoryId = CategoryId(UUID.randomUUID()),
+                categoryId = CategoryId(newCategoryIdUUID),
                 categoryItemId = CommonTest.categoryItem.categoryItemId,
                 name = CommonTest.categoryItem.name)
 
-        try {
-            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
-                    .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
-                    .`when`(createCategoryItemCommand)
-        } catch (e: Error) {
-            e.printStackTrace()
-            assertNotNull("Expected error message", e.message)
-            assertEquals("Expected CategoryNotFoundException class", e.javaClass, CategoryNotFoundException::class.java)
-        }
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(CategoryCreated(AccountId(CommonTest.accountId), category))
+                .`when`(createCategoryItemCommand)
+                .expectExceptionMessage("Category with id $newCategoryIdUUID not found")
+                .expectException(CategoryNotFoundException::class.java)
     }
 }

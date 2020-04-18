@@ -29,7 +29,7 @@ data class RecordProjection(val id: UUID,
 data class CategoryProjection(val id: UUID,
                               val accountId: UUID,
                               val name: String,
-                              val categoryItems: List<CategoryItemProjection>)
+                              val categoryItems: Set<CategoryItemProjection>)
 
 @Document
 data class CategoryItemProjection(val id: UUID,

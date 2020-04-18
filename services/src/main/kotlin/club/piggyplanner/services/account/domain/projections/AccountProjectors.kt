@@ -67,8 +67,8 @@ class AccountProjector(private val accountStore: AccountStore,
                     categoryItem.name
             )
 
-    private fun toCategoryItemProjections(categoryItems: MutableList<CategoryItem>): List<CategoryItemProjection> =
+    private fun toCategoryItemProjections(categoryItems: MutableSet<CategoryItem>): Set<CategoryItemProjection> =
             categoryItems.map {
                 toCategoryItem(it)
-            }
+            }.toSet()
 }

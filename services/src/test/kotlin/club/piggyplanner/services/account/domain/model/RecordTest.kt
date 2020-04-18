@@ -83,8 +83,8 @@ class RecordTest {
                 .andGiven(generateCategoryItemCreatedEvent())
                 .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
                 .`when`(createNewRecordCommand)
+                .expectExceptionMessage("Record duplicated")
                 .expectException(RecordAlreadyAddedException::class.java)
-                .expectExceptionMessage("Record id duplicated")
     }
 
     @Test
@@ -145,17 +145,13 @@ class RecordTest {
                 amount = BigDecimal.ONE,
                 memo = "This is another note")
 
-        try {
-            fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
-                    .andGiven(generateCategoryCreatedEvent())
-                    .andGiven(generateCategoryItemCreatedEvent())
-                    .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
-                    .`when`(createNewRecordCommand)
-                    .expectSuccessfulHandlerExecution()
-        } catch (e: Error) {
-            assertNotNull("Expected error message", e.message)
-            assertEquals("Expected AssertionError class", e.javaClass, AxonAssertionError::class.java)
-        }
+        fixture.given(CommonTest.generateDefaultAccountCreatedEvent())
+                .andGiven(generateCategoryCreatedEvent())
+                .andGiven(generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(CommonTest.accountId), CommonTest.category.categoryId, record))
+                .`when`(createNewRecordCommand)
+                .expectExceptionMessage("Records quota exceeded")
+                .expectException(RecordsQuotaExceededException::class.java)
     }
 
     private fun generateRecordCommand(record: Record): CreateRecord {

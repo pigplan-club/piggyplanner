@@ -7,7 +7,7 @@ import java.util.*
 class CommonTest {
 
     companion object {
-        private val accountConfigProperties = AccountConfigProperties("Personal", 2, 2, 2)
+        private val accountConfigProperties = AccountConfigProperties("Personal", 1, 2, 2)
         private val userId = UUID.randomUUID()
         val accountId: UUID = UUID.randomUUID()
         val category = Category(CategoryId(UUID.randomUUID()), "Utility")

@@ -11,7 +11,6 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
 import java.time.LocalDate
-import java.util.*
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
 class Account() : Entity() {
@@ -26,10 +25,10 @@ class Account() : Entity() {
     private var categoryItemsQuota: Int = -1
 
     @AggregateMember
-    private val records = mutableListOf<Record>()
+    private val records = mutableSetOf<Record>()
 
     @AggregateMember
-    private val categories = mutableListOf<Category>()
+    private val categories = mutableSetOf<Category>()
 
     @CommandHandler
     constructor(command: CreateDefaultAccount, accountConfigProperties: AccountConfigProperties) : this() {
@@ -47,21 +46,14 @@ class Account() : Entity() {
 
     @CommandHandler
     fun handle(command: CreateCategory): Boolean {
-        if (categories.find { category -> category.categoryId == command.categoryId } != null)
-            throw CategoryAlreadyAddedException()
-
-        if (categories.find { category -> category.name.toLowerCase() == command.name.toLowerCase() } != null)
-            throw CategoryAlreadyAddedException()
-
         if (categories.filter { it.state == EntityState.ENABLED }.size >= this.categoriesQuota)
             throw CategoriesQuotaExceededException()
 
-        AggregateLifecycle.apply(CategoryCreated(command.accountId,
-                Category(
-                        command.categoryId,
-                        command.name
-                )))
+        val newCategory = Category(command.categoryId, command.name)
+        if (categories.contains(newCategory))
+            throw CategoryAlreadyAddedException()
 
+        AggregateLifecycle.apply(CategoryCreated(command.accountId, newCategory))
         return true
     }
 
@@ -73,18 +65,12 @@ class Account() : Entity() {
         if (category.wasExceededQuota(this.categoryItemsQuota))
             throw CategoryItemsQuotaExceededException()
 
-        if (category.getCategoryItem(command.categoryItemId) != null)
-            throw CategoryItemAlreadyAddedException()
-
-        if (category.getCategoryItem(command.name) != null)
+        val newCategoryItem = CategoryItem(command.categoryItemId, command.name)
+        if (category.containsCategoryItem(newCategoryItem))
             throw CategoryItemAlreadyAddedException()
 
         AggregateLifecycle.apply(CategoryItemCreated(command.accountId,
-                command.categoryId,
-                CategoryItem(
-                        command.categoryItemId,
-                        command.name
-                )))
+                command.categoryId, newCategoryItem))
 
         return true
     }

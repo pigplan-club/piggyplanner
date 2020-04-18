@@ -22,4 +22,21 @@ class Record(@EntityId val recordId: RecordId,
         this.amount = event.record.amount
         this.memo = event.record.memo
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Record
+
+        if (recordId.id != other.recordId.id) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return recordId.hashCode()
+    }
+
+
 }
