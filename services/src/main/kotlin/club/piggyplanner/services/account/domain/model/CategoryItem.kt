@@ -2,8 +2,13 @@ package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.common.domain.model.Entity
 
-class CategoryItem(val categoryItemId: CategoryItemId,
-                   val name: String) : Entity(){
+class CategoryItem(val categoryItemId: CategoryItemId) : Entity() {
+
+    lateinit var name: String
+
+    constructor(categoryItemId: CategoryItemId, name: String) : this(categoryItemId) {
+        this.name = name
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -11,7 +16,7 @@ class CategoryItem(val categoryItemId: CategoryItemId,
 
         other as CategoryItem
 
-        if (categoryItemId.id != other.categoryItemId.id) return false
+        if (categoryItemId != other.categoryItemId) return false
         if (name != other.name) return false
 
         return true

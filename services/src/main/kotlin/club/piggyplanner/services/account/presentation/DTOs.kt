@@ -21,7 +21,3 @@ data class RecordDTO(val accountId: UUID,
     fun getCategoryItemId() = CategoryItemId(categoryItemId)
     fun getDate(): LocalDate = LocalDate.of(year, month, day)
 }
-
-data class CategoryDTO(val accountId: UUID,
-                       val categoryId: UUID,
-                       val name: String)

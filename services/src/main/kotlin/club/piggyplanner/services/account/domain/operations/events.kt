@@ -5,7 +5,7 @@ import org.axonframework.serialization.Revision
 
 @Revision("1.0")
 data class DefaultAccountCreated(val accountId: AccountId,
-                                 val saverId: SaverId,
+                                 val userId: UserId,
                                  val accountName: String,
                                  val recordsQuotaByMonth: Int,
                                  val categoriesQuota: Int,
@@ -22,7 +22,6 @@ data class CategoryItemCreated(val accountId: AccountId,
 
 @Revision("1.0")
 data class RecordCreated(val accountId: AccountId,
-                         val categoryId: CategoryId,
                          val record: Record)
 
 @Revision("1.0")

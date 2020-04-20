@@ -20,7 +20,7 @@ class AccountProjector(private val accountStore: AccountStore,
         val accountProjection = AccountProjection(
                 event.accountId.id,
                 event.accountName,
-                event.saverId.id,
+                event.userId.id,
                 listOf()
         )
         accountStore.save(accountProjection)
@@ -52,8 +52,8 @@ class AccountProjector(private val accountStore: AccountStore,
                 event.record.recordId.id,
                 event.accountId.id,
                 event.record.type,
-                event.categoryId.id,
-                event.record.categoryItem.categoryItemId.id,
+                event.record.categoryId.id,
+                event.record.categoryItemId.id,
                 event.record.date,
                 event.record.amount.value,
                 event.record.memo

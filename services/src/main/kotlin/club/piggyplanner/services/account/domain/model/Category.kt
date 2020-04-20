@@ -6,9 +6,15 @@ import club.piggyplanner.services.common.domain.model.EntityState
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.EntityId
 
-class Category(@EntityId val categoryId: CategoryId,
-               var name: String) : Entity() {
+class Category(@EntityId val categoryId: CategoryId) : Entity() {
+
+    lateinit var name: String private set
     var categoryItems = mutableSetOf<CategoryItem>()
+        private set
+
+    constructor(categoryId: CategoryId, name: String) : this(categoryId) {
+        this.name = name
+    }
 
     @EventSourcingHandler
     fun on(event: CategoryItemCreated) {
@@ -34,7 +40,7 @@ class Category(@EntityId val categoryId: CategoryId,
 
         other as Category
 
-        if (categoryId.id != other.categoryId.id) return false
+        if (categoryId != other.categoryId) return false
         if (name.toLowerCase() != other.name.toLowerCase()) return false
 
         return true

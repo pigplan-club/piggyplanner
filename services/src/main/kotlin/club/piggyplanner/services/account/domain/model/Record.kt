@@ -6,18 +6,35 @@ import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.EntityId
 import java.time.LocalDate
 
-class Record(@EntityId val recordId: RecordId,
-             var type: RecordType,
-             var categoryItem: CategoryItem,
-             var date: LocalDate,
-             var amount: RecordAmount,
-             var memo: String? = ""
-) : Entity() {
+class Record(@EntityId val recordId: RecordId) : Entity() {
+    lateinit var type: RecordType private set
+    lateinit var categoryId: CategoryId private set
+    lateinit var categoryItemId: CategoryItemId private set
+    lateinit var date: LocalDate private set
+    lateinit var amount: RecordAmount private set
+    var memo: String? = ""
+        private set
+
+    constructor (recordId: RecordId,
+                 type: RecordType,
+                 categoryId: CategoryId,
+                 categoryItemId: CategoryItemId,
+                 date: LocalDate,
+                 amount: RecordAmount,
+                 memo: String? = "") : this(recordId) {
+        this.type = type
+        this.categoryId = categoryId
+        this.categoryItemId = categoryItemId
+        this.date = date
+        this.amount = amount
+        this.memo = memo
+    }
 
     @EventSourcingHandler
     fun on(event: RecordModified) {
         this.type = event.record.type
-        this.categoryItem = event.record.categoryItem
+        this.categoryId = event.record.categoryId
+        this.categoryItemId = event.record.categoryItemId
         this.date = event.record.date
         this.amount = event.record.amount
         this.memo = event.record.memo

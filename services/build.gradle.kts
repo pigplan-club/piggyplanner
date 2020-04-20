@@ -1,9 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import info.solidsoft.gradle.pitest.PitestTask
 
 plugins {
     id("org.springframework.boot") version "2.2.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
-    id("com.google.cloud.tools.jib") version "2.1.0"
+    id("com.google.cloud.tools.jib") version "2.2.0"
+    id("info.solidsoft.pitest") version "1.4.8"
     kotlin("jvm") version "1.3.71"
     kotlin("plugin.spring") version "1.3.71"
 }
@@ -11,6 +13,12 @@ plugins {
 group = "club.piggyplanner"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
 
 repositories {
     mavenCentral()
@@ -50,17 +58,9 @@ dependencies {
 
     //Axon framework testing
     testImplementation("org.axonframework:axon-test:4.3.1")
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "1.8"
-    }
+    //Pitest extension for junit5
+    testImplementation("org.pitest:pitest-junit5-plugin:0.12")
 }
 
 jib {
@@ -71,9 +71,34 @@ jib {
 }
 
 tasks {
+    withType<Test> {
+        useJUnitPlatform()
+    }
+
+    withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "1.8"
+        }
+    }
+
+    withType<PitestTask> {
+        testPlugin.set("junit5")
+        threads.set(1)
+        outputFormats.set(setOf("HTML"))
+        mutators.set(setOf("STRONGER", "DEFAULTS"))
+        avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlinx.coroutines"))
+//        targetClasses.set(setOf("club.piggyplanner.services.*"))
+        targetClasses.set(setOf("club.piggyplanner.services.account.domain.model.*"))
+    }
+
     test {
         if (System.getenv("EXCLUDE_IT") == "true") {
             exclude("**/presentation*")
         }
     }
+
+//    named("build") {
+//        dependsOn("test", "pitest")
+//    }
 }

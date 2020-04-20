@@ -10,9 +10,9 @@ class RecordAlreadyAddedException : IllegalArgumentException("Record duplicated"
 
 class AmountInvalidException : IllegalArgumentException("Amount must be greater than 0")
 
-class CategoryNotFoundException(val id: UUID) : Exception("Category with id $id not found")
+class CategoryNotFoundException(id: UUID) : Exception("Category with id $id not found")
 
-class CategoryItemNotFoundException(val id: UUID) : Exception("Category Item with id $id not found")
+class CategoryItemNotFoundException(id: UUID) : Exception("Category Item with id $id not found")
 
 class CategoriesQuotaExceededException : Exception("Categories quota exceeded")
 

@@ -17,7 +17,7 @@ class Account() : Entity() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
-    private lateinit var saverId: SaverId
+    private lateinit var userId: UserId //TODO: Remove this
     private lateinit var name: String
 
     private var recordsQuotaByMonth: Int = -1
@@ -34,7 +34,7 @@ class Account() : Entity() {
     constructor(command: CreateDefaultAccount, accountConfigProperties: AccountConfigProperties) : this() {
         AggregateLifecycle.apply(DefaultAccountCreated(
                 command.accountId,
-                command.saverId,
+                command.userId,
                 accountConfigProperties.defaultAccountName,
                 accountConfigProperties.recordsQuotaByMonth,
                 accountConfigProperties.categoriesQuota,
@@ -77,11 +77,11 @@ class Account() : Entity() {
 
     @CommandHandler
     fun handle(command: CreateRecord): Boolean {
-        if (records.find { record -> record.recordId == command.recordId } != null)
-            throw RecordAlreadyAddedException()
-
         if (numberRecordsForSelectedMonth(command.date) >= recordsQuotaByMonth)
             throw RecordsQuotaExceededException()
+
+        if (records.find { record -> record.recordId == command.recordId } != null)
+            throw RecordAlreadyAddedException()
 
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
@@ -89,11 +89,11 @@ class Account() : Entity() {
                 ?: throw CategoryItemNotFoundException(command.categoryItemId.id)
 
         AggregateLifecycle.apply(RecordCreated(command.accountId,
-                command.categoryId,
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
-                        categoryItem = categoryItem,
+                        categoryId = category.categoryId,
+                        categoryItemId = categoryItem.categoryItemId,
                         date = command.date,
                         amount = RecordAmount(command.amount),
                         memo = command.memo)))
@@ -111,7 +111,8 @@ class Account() : Entity() {
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
-                        categoryItem = categoryItem,
+                        categoryId = category.categoryId,
+                        categoryItemId = categoryItem.categoryItemId,
                         date = command.date,
                         amount = RecordAmount(command.amount),
                         memo = command.memo)))
@@ -121,7 +122,7 @@ class Account() : Entity() {
     @EventSourcingHandler
     fun on(event: DefaultAccountCreated) {
         this.accountId = event.accountId
-        this.saverId = event.saverId
+        this.userId = event.userId
         this.name = event.accountName
         this.recordsQuotaByMonth = event.recordsQuotaByMonth
         this.categoriesQuota = event.categoriesQuota

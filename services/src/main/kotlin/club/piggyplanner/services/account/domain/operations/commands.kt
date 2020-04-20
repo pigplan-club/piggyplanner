@@ -7,7 +7,7 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
-data class CreateDefaultAccount(@TargetAggregateIdentifier val saverId: SaverId) {
+data class CreateDefaultAccount(@TargetAggregateIdentifier val userId: UserId) {
     val accountId: AccountId = AccountId(UUID.randomUUID())
     val categories: List<Category> = getDefaultCategories()
 }

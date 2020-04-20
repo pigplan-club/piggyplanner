@@ -3,7 +3,7 @@ package club.piggyplanner.services.account.domain.model
 import java.math.BigDecimal
 import java.util.*
 
-data class SaverId(val id: UUID)
+data class UserId(val id: UUID)
 
 data class AccountId(val id: UUID)
 
