@@ -25,22 +25,3 @@ jobs:
           flags: unittests
           name: piggyplanner
           fail_ci_if_error: true
-
-  deploy-backend:
-    runs-on: ubuntu-latest
-    needs: [test-backend]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Login to Docker hub Registry
-        run: docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build backend app and create docker image
-        working-directory: ./services
-        run: |
-          export BUILD_VERSION=stage
-          ./gradlew jib
