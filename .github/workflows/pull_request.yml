@@ -14,7 +14,17 @@ jobs:
 
       - name: Test and build
         working-directory: ./services
-        run: ./gradlew test build
+        run: ./gradlew build
+
+      - name: Upload coverage to Codecov
+        working-directory: ./services
+        uses: codecov/codecov-action@v1
+        with:
+          token: dc2fa2a9-f6e8-46bf-a3a0-1da3eb4deeb5
+          file: build/reports/jacoco/report.xml
+          flags: unittests
+          name: piggyplanner
+          fail_ci_if_error: true
 
   deploy-backend:
     runs-on: ubuntu-latest
