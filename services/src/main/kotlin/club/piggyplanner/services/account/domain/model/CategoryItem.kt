@@ -5,6 +5,7 @@ import club.piggyplanner.services.common.domain.model.Entity
 class CategoryItem(val categoryItemId: CategoryItemId) : Entity() {
 
     lateinit var name: String
+        private set
 
     constructor(categoryItemId: CategoryItemId, name: String) : this(categoryItemId) {
         this.name = name

@@ -6,6 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
     id("com.google.cloud.tools.jib") version "2.2.0"
     id("info.solidsoft.pitest") version "1.4.7"
+    id( "org.sonarqube") version "2.8"
     kotlin("jvm") version "1.3.71"
     kotlin("plugin.spring") version "1.3.71"
     jacoco
@@ -110,5 +111,16 @@ tasks {
 
     named("build") {
         dependsOn("test")
+    }
+}
+
+sonarqube {
+    properties {
+        property("sonar.host.url", "https://sonarcloud.io/")
+        property("sonar.projectName", "Piggy planner")
+        property("sonar.projectKey", "piggyplanner")
+        property("sonar.junit.reportPaths", "$buildDir/reports/test")
+        property("sonar.jacoco.reportPaths", "build/jacoco/test.exec")
+        property("sonar.coverage.jacoco.xmlReportPaths","$buildDir/reports/jacoco/report.xml")
     }
 }
