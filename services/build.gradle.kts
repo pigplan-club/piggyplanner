@@ -1,13 +1,14 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import info.solidsoft.gradle.pitest.PitestTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.springframework.boot") version "2.2.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
     id("com.google.cloud.tools.jib") version "2.2.0"
-    id("info.solidsoft.pitest") version "1.4.8"
+    id("info.solidsoft.pitest") version "1.4.7"
     kotlin("jvm") version "1.3.71"
     kotlin("plugin.spring") version "1.3.71"
+    jacoco
 }
 
 group = "club.piggyplanner"
@@ -66,13 +67,17 @@ dependencies {
 jib {
     to {
         image = "pigplanclub/piggyplanner-services"
-        tags = setOf(System.getenv("BUILD_VERSION")?:"$version")
+        tags = setOf(System.getenv("BUILD_VERSION") ?: "$version")
     }
 }
 
 tasks {
     withType<Test> {
         useJUnitPlatform()
+        if (System.getenv("EXCLUDE_IT") == "true") {
+            exclude("**/presentation*")
+        }
+        finalizedBy(jacocoTestReport)
     }
 
     withType<KotlinCompile> {
@@ -82,23 +87,28 @@ tasks {
         }
     }
 
+    jacocoTestReport {
+        reports {
+            xml.isEnabled = true
+            xml.destination  = File("$buildDir/reports/jacoco/report.xml")
+            csv.isEnabled = false
+            html.isEnabled = true
+        }
+        executionData(File("build/jacoco/test.exec"))
+    }
+
     withType<PitestTask> {
         testPlugin.set("junit5")
         threads.set(1)
         outputFormats.set(setOf("HTML"))
-        mutators.set(setOf("STRONGER", "DEFAULTS"))
+        mutators.set(setOf("DEFAULTS"))
+//        mutators.set(setOf("STRONGER", "DEFAULTS", "ALL"))
         avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlinx.coroutines"))
 //        targetClasses.set(setOf("club.piggyplanner.services.*"))
         targetClasses.set(setOf("club.piggyplanner.services.account.domain.model.*"))
     }
 
-    test {
-        if (System.getenv("EXCLUDE_IT") == "true") {
-            exclude("**/presentation*")
-        }
+    named("build") {
+        dependsOn("test")
     }
-
-//    named("build") {
-//        dependsOn("test", "pitest")
-//    }
 }

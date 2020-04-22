@@ -8,8 +8,7 @@ import club.piggyplanner.services.account.domain.operations.RecordModified
 import org.axonframework.modelling.command.AggregateNotFoundException
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -326,5 +325,26 @@ class RecordTest {
                 .expectSuccessfulHandlerExecution()
                 .expectEvents(RecordCreated(AccountId(UtilTest.accountId), newRecord))
                 .expectResultMessagePayload(true)
+    }
+
+    @Test
+    internal fun `Compare Record equality`() {
+        val recordId = RecordId(UUID.randomUUID())
+        val record1 = Record(recordId = recordId, type = RecordType.EXPENSE, categoryId = UtilTest.category.categoryId, categoryItemId = UtilTest.categoryItem.categoryItemId, date = LocalDate.now(), amount = RecordAmount(BigDecimal.TEN), memo = "test memo")
+        val record2 = Record(recordId = recordId, type = RecordType.INCOME, categoryId = UtilTest.category.categoryId, categoryItemId = UtilTest.categoryItem.categoryItemId, date = LocalDate.now(), amount = RecordAmount(BigDecimal.ONE), memo = "test memo 2")
+        val record3 = Record(recordId = RecordId(UUID.randomUUID()), type = RecordType.EXPENSE, categoryId = UtilTest.category.categoryId, categoryItemId = UtilTest.categoryItem.categoryItemId, date = LocalDate.now(), amount = RecordAmount(BigDecimal.TEN), memo = "test memo")
+        val record4 = UtilTest.createRecordForTest(false)
+        assertEquals("Memo should be empty string", record4.memo, "")
+
+        val list = mutableSetOf(record1, record3)
+
+        assertEquals("Same object should be equals", record1, record1)
+        assertEquals("Same id should be equals", record1, record2)
+        assertNotEquals("Different id should be different", record1, record3)
+        assertTrue(list.contains(record2))
+        assertFalse(list.contains(record4))
+
+        list.add(record2)
+        assertEquals("Same object should not be added", 2, list.size)
     }
 }

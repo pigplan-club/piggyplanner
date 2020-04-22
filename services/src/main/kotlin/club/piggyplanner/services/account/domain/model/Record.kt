@@ -12,7 +12,7 @@ class Record(@EntityId val recordId: RecordId) : Entity() {
     lateinit var categoryItemId: CategoryItemId private set
     lateinit var date: LocalDate private set
     lateinit var amount: RecordAmount private set
-    var memo: String? = ""
+    lateinit var memo: String
         private set
 
     constructor (recordId: RecordId,
@@ -27,7 +27,7 @@ class Record(@EntityId val recordId: RecordId) : Entity() {
         this.categoryItemId = categoryItemId
         this.date = date
         this.amount = amount
-        this.memo = memo
+        this.memo = memo!!
     }
 
     @EventSourcingHandler

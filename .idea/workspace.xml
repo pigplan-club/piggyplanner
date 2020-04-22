@@ -20,28 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build_master.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build_master.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/pull_request.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/pull_request.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/services/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/services/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/application/AccountService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/application/AccountService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/ValueObjects.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/ValueObjects.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/domain/model/Entity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/domain/model/Entity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/infrastructure.config/AxonConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/infrastructure.config/AxonConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CommonTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/utils/UtilTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +113,64 @@
       <recent name="$PROJECT_DIR$/architecture/diagrams" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CategoryTest.Compare Category equality$services">
+  <component name="RunManager" selected="Gradle.RecordTest.Compare Record equality$services">
+    <configuration name="CategoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.CategoryTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CategoryTest.Category items should not be empty$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.CategoryTest.Category items should not be empty$services&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CategoryTest.Compare Category Items equality$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.CategoryTest.Compare Category Items equality$services&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="CategoryTest.Compare Category equality$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -147,69 +190,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RecordTest.Create a Record evaluating the quota for the specific month$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="RecordTest.Compare Record equality$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.RecordTest.Create a Record evaluating the quota for the specific month$services&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RecordTest.Create a Record exceeding quota by month for last day of this month$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.RecordTest.Create a Record exceeding quota by month for last day of this month$services&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RecordTest.Create a Record exceeding quota by month$services" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.RecordTest.Create a Record exceeding quota by month$services&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests in 'club.piggyplanner.services.account.domain.model'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.*&quot;" />
+        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.domain.model.RecordTest.Compare Record equality$services&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -231,20 +217,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.ServicesApplication" />
-      <item itemvalue="Gradle.RecordTest.Create a Record evaluating the quota for the specific month$services" />
-      <item itemvalue="Gradle.RecordTest.Create a Record exceeding quota by month$services" />
-      <item itemvalue="Gradle.RecordTest.Create a Record exceeding quota by month for last day of this month$services" />
-      <item itemvalue="Gradle.Tests in 'club.piggyplanner.services.account.domain.model'" />
       <item itemvalue="Gradle.CategoryTest.Compare Category equality$services" />
+      <item itemvalue="Gradle.CategoryTest.Category items should not be empty$services" />
+      <item itemvalue="Spring Boot.ServicesApplication" />
+      <item itemvalue="Gradle.CategoryTest" />
+      <item itemvalue="Gradle.CategoryTest.Compare Category Items equality$services" />
+      <item itemvalue="Gradle.RecordTest.Compare Record equality$services" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.RecordTest.Compare Record equality$services" />
+        <item itemvalue="Gradle.CategoryTest.Compare Category Items equality$services" />
         <item itemvalue="Gradle.CategoryTest.Compare Category equality$services" />
-        <item itemvalue="Gradle.Tests in 'club.piggyplanner.services.account.domain.model'" />
-        <item itemvalue="Gradle.RecordTest.Create a Record exceeding quota by month for last day of this month$services" />
-        <item itemvalue="Gradle.RecordTest.Create a Record exceeding quota by month$services" />
-        <item itemvalue="Gradle.RecordTest.Create a Record evaluating the quota for the specific month$services" />
+        <item itemvalue="Gradle.CategoryTest" />
+        <item itemvalue="Gradle.CategoryTest.Category items should not be empty$services" />
       </list>
     </recent_temporary>
   </component>
@@ -273,7 +259,10 @@
       <workItem from="1587257873003" duration="632000" />
       <workItem from="1587258527743" duration="1050000" />
       <workItem from="1587259955593" duration="5736000" />
-      <workItem from="1587345306201" duration="11211000" />
+      <workItem from="1587345306201" duration="12018000" />
+      <workItem from="1587401540662" duration="36000" />
+      <workItem from="1587401872526" duration="2672000" />
+      <workItem from="1587517955600" duration="6414000" />
     </task>
     <servers />
   </component>
@@ -356,40 +345,40 @@
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="693" height="506" key="DebuggerActiveHint/45.27.1555.873@45.27.1555.873" timestamp="1587177785304" />
-    <state x="128" y="27" width="1390" height="873" key="DiffContextDialog" timestamp="1587324688567">
+    <state x="128" y="27" width="1390" height="873" key="DiffContextDialog" timestamp="1587524600542">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="145" y="98" width="1675" height="882" key="DiffContextDialog/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988886396" />
-    <state x="128" y="27" width="1390" height="873" key="DiffContextDialog/45.27.1555.873@45.27.1555.873" timestamp="1587324688567" />
+    <state x="128" y="27" width="1390" height="873" key="DiffContextDialog/45.27.1555.873@45.27.1555.873" timestamp="1587524600542" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586050740140">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1586050740140" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
-    <state width="1509" height="240" key="GridCell.Tab.0.bottom" timestamp="1587356433586">
+    <state width="1509" height="240" key="GridCell.Tab.0.bottom" timestamp="1587520049181">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.bottom/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1509" height="240" key="GridCell.Tab.0.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587356433586" />
-    <state width="1509" height="240" key="GridCell.Tab.0.center" timestamp="1587356433580">
+    <state width="1509" height="240" key="GridCell.Tab.0.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587520049181" />
+    <state width="1509" height="240" key="GridCell.Tab.0.center" timestamp="1587520049178">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.center/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1509" height="240" key="GridCell.Tab.0.center/45.27.1555.873@45.27.1555.873" timestamp="1587356433580" />
-    <state width="1509" height="240" key="GridCell.Tab.0.left" timestamp="1587356433577">
+    <state width="1509" height="240" key="GridCell.Tab.0.center/45.27.1555.873@45.27.1555.873" timestamp="1587520049178" />
+    <state width="1509" height="240" key="GridCell.Tab.0.left" timestamp="1587520049177">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1586722803260" />
     <state width="1829" height="409" key="GridCell.Tab.0.left/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1509" height="240" key="GridCell.Tab.0.left/45.27.1555.873@45.27.1555.873" timestamp="1587356433577" />
-    <state width="1509" height="240" key="GridCell.Tab.0.right" timestamp="1587356433583">
+    <state width="1509" height="240" key="GridCell.Tab.0.left/45.27.1555.873@45.27.1555.873" timestamp="1587520049177" />
+    <state width="1509" height="240" key="GridCell.Tab.0.right" timestamp="1587520049180">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.right/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1509" height="240" key="GridCell.Tab.0.right/45.27.1555.873@45.27.1555.873" timestamp="1587356433583" />
+    <state width="1509" height="240" key="GridCell.Tab.0.right/45.27.1555.873@45.27.1555.873" timestamp="1587520049180" />
     <state width="1509" height="220" key="GridCell.Tab.1.bottom" timestamp="1587356401194">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
@@ -479,7 +468,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt</url>
-          <line>266</line>
+          <line>265</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -494,16 +483,6 @@
           <url>file://$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt</url>
           <line>143</line>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt</url>
-          <line>38</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt</url>
-          <line>171</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

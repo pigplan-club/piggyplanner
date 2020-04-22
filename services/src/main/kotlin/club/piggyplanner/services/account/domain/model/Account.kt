@@ -17,7 +17,7 @@ class Account() : Entity() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
-    private lateinit var userId: UserId //TODO: Remove this
+    private lateinit var userId: UserId
     private lateinit var name: String
 
     private var recordsQuotaByMonth: Int = -1
