@@ -102,6 +102,9 @@ class Account() : Entity() {
 
     @CommandHandler
     fun handle(command: ModifyRecord): Boolean {
+        if (records.find { record -> record.recordId == command.recordId } == null)
+            throw RecordNotFoundException(command.recordId.id)
+
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
         val categoryItem = category.getCategoryItem(command.categoryItemId)
@@ -116,6 +119,17 @@ class Account() : Entity() {
                         date = command.date,
                         amount = RecordAmount(command.amount),
                         memo = command.memo)))
+        return true
+    }
+
+    @CommandHandler
+    fun handle(command: DeleteRecord): Boolean {
+        if (records.find { record -> record.recordId == command.recordId } == null)
+            throw RecordNotFoundException(command.recordId.id)
+
+        AggregateLifecycle.apply(RecordDeleted(command.accountId,
+                command.recordId))
+
         return true
     }
 
@@ -137,6 +151,12 @@ class Account() : Entity() {
     @EventSourcingHandler
     fun on(event: RecordCreated) {
         this.records.add(event.record)
+    }
+
+    @EventSourcingHandler
+    fun on(event: RecordDeleted) {
+        val record = this.records.find { record -> record.recordId == event.recordId }
+        this.records.remove(record)
     }
 
     private fun numberRecordsForSelectedMonth(date: LocalDate): Int {

@@ -1,10 +1,7 @@
 package club.piggyplanner.services.account.domain.model
 
 import club.piggyplanner.services.account.domain.model.utils.UtilTest
-import club.piggyplanner.services.account.domain.operations.CreateRecord
-import club.piggyplanner.services.account.domain.operations.ModifyRecord
-import club.piggyplanner.services.account.domain.operations.RecordCreated
-import club.piggyplanner.services.account.domain.operations.RecordModified
+import club.piggyplanner.services.account.domain.operations.*
 import org.axonframework.modelling.command.AggregateNotFoundException
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
@@ -25,9 +22,9 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a correct Record`() {
+    internal fun `Create a Record should be correct`() {
         val record = UtilTest.createRecordForTest(true)
-        val createRecordCommand = UtilTest.generateRecordCommand(record)
+        val createRecordCommand = UtilTest.generateCreateRecordCommand(record)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
                 .andGiven(UtilTest.generateCategoryCreatedEvent())
@@ -39,9 +36,9 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a correct Record without memo`() {
+    internal fun `Create a Record without memo should be correct`() {
         val record = UtilTest.createRecordForTest(false)
-        val createRecordCommand = UtilTest.generateRecordCommand(record)
+        val createRecordCommand = UtilTest.generateCreateRecordCommand(record)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
                 .andGiven(UtilTest.generateCategoryCreatedEvent())
@@ -53,41 +50,7 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record with an invalid amount`() {
-        assertThrows<AmountInvalidException>("Should throw AmountInvalidException") {
-            UtilTest.createRecordForTest(false, BigDecimal.valueOf(0))
-        }
-
-        assertThrows<AmountInvalidException>("Should throw AmountInvalidException") {
-            UtilTest.createRecordForTest(false, BigDecimal.valueOf(-5))
-        }
-    }
-
-    @Test
-    internal fun `Create a duplicated record`() {
-        val record = UtilTest.createRecordForTest(false)
-
-        val createNewRecordCommand = CreateRecord(
-                accountId = AccountId(UtilTest.accountId),
-                recordId = record.recordId,
-                recordType = RecordType.EXPENSE,
-                categoryId = UtilTest.category.categoryId,
-                categoryItemId = UtilTest.categoryItem.categoryItemId,
-                date = LocalDate.now(),
-                amount = BigDecimal.ONE,
-                memo = "This is another note")
-
-        fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
-                .andGiven(UtilTest.generateCategoryCreatedEvent())
-                .andGiven(UtilTest.generateCategoryItemCreatedEvent())
-                .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
-                .`when`(createNewRecordCommand)
-                .expectExceptionMessage("Record duplicated")
-                .expectException(RecordAlreadyAddedException::class.java)
-    }
-
-    @Test
-    internal fun `Modify a Record`() {
+    internal fun `Modify an existing Record should be correct`() {
         val record = UtilTest.createRecordForTest(false)
         val recordModified = Record(
                 record.recordId,
@@ -119,9 +82,60 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record with non existing Account`() {
+    internal fun `Delete an existing Record should be correct`() {
+        val record = UtilTest.createRecordForTest(false)
+        val deleteRecordCommand = DeleteRecord(
+                accountId = AccountId(UtilTest.accountId),
+                recordId = record.recordId)
+
+        fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
+                .andGiven(UtilTest.generateCategoryCreatedEvent())
+                .andGiven(UtilTest.generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
+                .`when`(deleteRecordCommand)
+                .expectSuccessfulHandlerExecution()
+                .expectEvents(RecordDeleted(AccountId(UtilTest.accountId), record.recordId))
+                .expectResultMessagePayload(true)
+    }
+
+    @Test
+    internal fun `Create a Record with an invalid amount should throw AmountInvalidException`() {
+        assertThrows<AmountInvalidException>("Should throw AmountInvalidException") {
+            UtilTest.createRecordForTest(false, BigDecimal.valueOf(0))
+        }
+
+        assertThrows<AmountInvalidException>("Should throw AmountInvalidException") {
+            UtilTest.createRecordForTest(false, BigDecimal.valueOf(-5))
+        }
+    }
+
+    @Test
+    internal fun `Create a duplicated record should throw RecordAlreadyAddedException`() {
+        val record = UtilTest.createRecordForTest(false)
+
+        val createNewRecordCommand = CreateRecord(
+                accountId = AccountId(UtilTest.accountId),
+                recordId = record.recordId,
+                recordType = RecordType.EXPENSE,
+                categoryId = UtilTest.category.categoryId,
+                categoryItemId = UtilTest.categoryItem.categoryItemId,
+                date = LocalDate.now(),
+                amount = BigDecimal.ONE,
+                memo = "This is another note")
+
+        fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
+                .andGiven(UtilTest.generateCategoryCreatedEvent())
+                .andGiven(UtilTest.generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
+                .`when`(createNewRecordCommand)
+                .expectExceptionMessage("Record duplicated")
+                .expectException(RecordAlreadyAddedException::class.java)
+    }
+
+    @Test
+    internal fun `Create a Record with non existing Account should throw AggregateNotFoundException`() {
         val record = UtilTest.createRecordForTest(true)
-        val createRecordCommand = UtilTest.generateRecordCommand(record)
+        val createRecordCommand = UtilTest.generateCreateRecordCommand(record)
 
         fixture.givenNoPriorActivity()
                 .`when`(createRecordCommand)
@@ -129,7 +143,40 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Modify a Record with non existing Account`() {
+    internal fun `Modify a non existing Record should throw RecordNotFoundException`() {
+        val record = UtilTest.createRecordForTest(false)
+        val recordModified = Record(
+                record.recordId,
+                type = RecordType.INCOME,
+                date = record.date,
+                categoryId = record.categoryId,
+                categoryItemId = record.categoryItemId,
+                amount = RecordAmount(BigDecimal.TEN),
+                memo = "New memo")
+
+
+        val newRecordId = UUID.randomUUID()
+        val modifyRecordCommand = ModifyRecord(
+                accountId = AccountId(UtilTest.accountId),
+                recordId = RecordId(newRecordId),
+                recordType = recordModified.type,
+                categoryId = recordModified.categoryId,
+                categoryItemId = recordModified.categoryItemId,
+                date = recordModified.date,
+                amount = recordModified.amount.value,
+                memo = recordModified.memo)
+
+        fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
+                .andGiven(UtilTest.generateCategoryCreatedEvent())
+                .andGiven(UtilTest.generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
+                .`when`(modifyRecordCommand)
+                .expectExceptionMessage("Record with id $newRecordId not found")
+                .expectException(RecordNotFoundException::class.java)
+    }
+
+    @Test
+    internal fun `Modify a Record with non existing Account should throw AssertionError`() {
         val record = UtilTest.createRecordForTest(false)
         val recordModified = Record(
                 record.recordId,
@@ -163,9 +210,47 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record with non existing Category`() {
+    internal fun `Delete a non existing Record should throw RecordNotFoundException`() {
+        val record = UtilTest.createRecordForTest(false)
+
+        val newRecordId = UUID.randomUUID()
+        val deleteRecordCommand = DeleteRecord(
+                accountId = AccountId(UtilTest.accountId),
+                recordId = RecordId(newRecordId))
+
+        fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
+                .andGiven(UtilTest.generateCategoryCreatedEvent())
+                .andGiven(UtilTest.generateCategoryItemCreatedEvent())
+                .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
+                .`when`(deleteRecordCommand)
+                .expectExceptionMessage("Record with id $newRecordId not found")
+                .expectException(RecordNotFoundException::class.java)
+    }
+
+    @Test
+    internal fun `Delete a Record with non existing Account should throw AssertionError`() {
+        val record = UtilTest.createRecordForTest(false)
+
+        val deleteRecordCommand = DeleteRecord(
+                accountId = AccountId(UUID.randomUUID()),
+                recordId = record.recordId)
+
+        try {
+            fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
+                    .andGiven(UtilTest.generateCategoryCreatedEvent())
+                    .andGiven(UtilTest.generateCategoryItemCreatedEvent())
+                    .andGiven(RecordCreated(AccountId(UtilTest.accountId), record))
+                    .`when`(deleteRecordCommand)
+        } catch (e: Error) {
+            assertNotNull("Expected error message", e.message)
+            assertEquals("Expected AssertionError class", e.javaClass, AssertionError::class.java)
+        }
+    }
+
+    @Test
+    internal fun `Create a Record with non existing Category should throw CategoryNotFoundException`() {
         val record = UtilTest.createRecordForTest(true)
-        val createRecordCommand = UtilTest.generateRecordCommand(record)
+        val createRecordCommand = UtilTest.generateCreateRecordCommand(record)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent())
                 .`when`(createRecordCommand)
@@ -174,7 +259,7 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record with non existing Category Item`() {
+    internal fun `Create a Record with non existing Category Item should throw CategoryItemNotFoundException`() {
         val newCategoryItemId = CategoryItemId(UUID.randomUUID())
         val createRecordCommand = CreateRecord(
                 accountId = AccountId(UtilTest.accountId),
@@ -193,7 +278,7 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Modify a Record with non existing Category`() {
+    internal fun `Modify a Record with non existing Category should throw CategoryNotFoundException`() {
         val record = UtilTest.createRecordForTest(false)
         val recordModified = Record(
                 record.recordId,
@@ -222,7 +307,7 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Modify a Record with non existing Category Item`() {
+    internal fun `Modify a Record with non existing Category Item should throw CategoryItemNotFoundException`() {
         val record = UtilTest.createRecordForTest(false)
         val recordModified = Record(
                 record.recordId,
@@ -253,11 +338,11 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record exceeding quota by month for first day of this month`() {
+    internal fun `Create a Record exceeding quota by month for first day of this month should throw RecordsQuotaExceededException`() {
         val firstDayThisMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth - 1.toLong())
         val record = UtilTest.createRecordForTest(true, date = firstDayThisMonth)
         val newRecord = UtilTest.createRecordForTest(true, date = firstDayThisMonth)
-        val createNewRecordCommand = UtilTest.generateRecordCommand(newRecord)
+        val createNewRecordCommand = UtilTest.generateCreateRecordCommand(newRecord)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent(newRecordsQuotaByMonth = 1))
                 .andGiven(UtilTest.generateCategoryCreatedEvent())
@@ -269,11 +354,11 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record exceeding quota by month for last day of this month`() {
+    internal fun `Create a Record exceeding quota by month for last day of this month should throw RecordsQuotaExceededException`() {
         val lastDayThisMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth.toLong()).plusMonths(1)
         val record = UtilTest.createRecordForTest(true, date = lastDayThisMonth)
         val newRecord = UtilTest.createRecordForTest(true, date = lastDayThisMonth)
-        val createNewRecordCommand = UtilTest.generateRecordCommand(newRecord)
+        val createNewRecordCommand = UtilTest.generateCreateRecordCommand(newRecord)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent(newRecordsQuotaByMonth = 1))
                 .andGiven(UtilTest.generateCategoryCreatedEvent())
@@ -285,7 +370,7 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record evaluating the quota for the specific month`() {
+    internal fun `Create a Record evaluating the quota for the specific month should be correct`() {
         val firstDayThisMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth.toLong())
         val thisMonthRecord = UtilTest.createRecordForTest(true, date = firstDayThisMonth)
         val lastDayOfLastLastMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth.toLong()).minusMonths(1)
@@ -293,7 +378,7 @@ class RecordTest {
 
         val lastDayOfLastMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth.toLong())
         val newRecord = UtilTest.createRecordForTest(true, date = lastDayOfLastMonth)
-        val createNewRecordCommand = UtilTest.generateRecordCommand(newRecord)
+        val createNewRecordCommand = UtilTest.generateCreateRecordCommand(newRecord)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent(newRecordsQuotaByMonth = 1))
                 .andGiven(UtilTest.generateCategoryCreatedEvent())
@@ -307,14 +392,14 @@ class RecordTest {
     }
 
     @Test
-    internal fun `Create a Record for first day of the next month without exceeding quota by month`() {
+    internal fun `Create a Record for first day of the next month without exceeding quota by month should be correct`() {
         val recordForNow = UtilTest.createRecordForTest(true)
         val firstDayOfNextNextMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth - 1.toLong()).plusMonths(2)
         val recordNextNextMonth = UtilTest.createRecordForTest(true, date = firstDayOfNextNextMonth)
 
         val firstDayNextMonth = LocalDate.now().minusDays(LocalDate.now().dayOfMonth.toLong() - 1).plusMonths(1)
         val newRecord = UtilTest.createRecordForTest(true, date = firstDayNextMonth)
-        val createNewRecordCommand = UtilTest.generateRecordCommand(newRecord)
+        val createNewRecordCommand = UtilTest.generateCreateRecordCommand(newRecord)
 
         fixture.given(UtilTest.generateDefaultAccountCreatedEvent(newRecordsQuotaByMonth = 1))
                 .andGiven(UtilTest.generateCategoryCreatedEvent())

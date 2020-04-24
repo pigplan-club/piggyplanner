@@ -21,7 +21,7 @@ class AccountTest {
     }
 
     @Test
-    internal fun `Create a default Account`() {
+    internal fun `Create a default Account should be correct`() {
         val userId = UUID.randomUUID()
         val createDefaultAccountCommand = CreateDefaultAccount(UserId(userId))
 

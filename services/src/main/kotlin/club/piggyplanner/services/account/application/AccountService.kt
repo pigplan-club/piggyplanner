@@ -1,9 +1,11 @@
 package club.piggyplanner.services.account.application
 
 import club.piggyplanner.services.account.domain.model.AccountId
+import club.piggyplanner.services.account.domain.model.RecordId
 import club.piggyplanner.services.account.domain.model.UserId
 import club.piggyplanner.services.account.domain.operations.CreateDefaultAccount
 import club.piggyplanner.services.account.domain.operations.CreateRecord
+import club.piggyplanner.services.account.domain.operations.DeleteRecord
 import club.piggyplanner.services.account.domain.operations.ModifyRecord
 import club.piggyplanner.services.account.presentation.RecordDTO
 import org.axonframework.commandhandling.gateway.CommandGateway
@@ -44,6 +46,13 @@ class AccountService(private val commandGateway: CommandGateway,
                 recordDTO.getDate(),
                 recordDTO.amount,
                 recordDTO.memo
+        ))
+    }
+
+    fun deleteRecord(accountId: UUID, recordId: UUID): CompletableFuture<Boolean> {
+        return commandGateway.send(DeleteRecord(
+                AccountId(accountId),
+                RecordId(recordId)
         ))
     }
 }

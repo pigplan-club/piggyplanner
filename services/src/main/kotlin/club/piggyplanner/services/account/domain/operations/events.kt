@@ -27,3 +27,7 @@ data class RecordCreated(val accountId: AccountId,
 @Revision("1.0")
 data class RecordModified(val accountId: AccountId,
                           val record: Record)
+
+@Revision("1.0")
+data class RecordDeleted(val accountId: AccountId,
+                          val recordId: RecordId)

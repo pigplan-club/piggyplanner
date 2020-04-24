@@ -15,12 +15,3 @@ jobs:
       - name: Test and build
         working-directory: ./services
         run: ./gradlew build
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: dc2fa2a9-f6e8-46bf-a3a0-1da3eb4deeb5
-          file: ./services/build/reports/jacoco/report.xml
-          flags: unittests
-          name: piggyplanner
-          fail_ci_if_error: true

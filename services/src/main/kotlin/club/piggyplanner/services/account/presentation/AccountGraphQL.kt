@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class Mutations(private val accountService: AccountService) : Mutation {
+class AccountMutations(private val accountService: AccountService) : Mutation {
 
     @GraphQLDescription("Create new Record")
     fun createRecord(recordDTO: RecordDTO) =
@@ -18,6 +18,9 @@ class Mutations(private val accountService: AccountService) : Mutation {
     fun modifyRecord(recordDTO: RecordDTO) =
             accountService.modifyRecord(recordDTO)
 
+    @GraphQLDescription("Delete an existing Record")
+    fun deleteRecord(accountId: UUID, recordId: UUID) =
+            accountService.deleteRecord(accountId, recordId)
 
     //TODO: remove it
     @GraphQLDescription("Create default Account to test")

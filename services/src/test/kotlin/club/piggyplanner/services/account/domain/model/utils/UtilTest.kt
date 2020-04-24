@@ -30,7 +30,7 @@ class UtilTest {
                     categoryItemsQuota!!)
         }
 
-        fun generateRecordCommand(record: Record): CreateRecord {
+        fun generateCreateRecordCommand(record: Record): CreateRecord {
             return CreateRecord(
                     accountId = AccountId(accountId),
                     recordId = record.recordId,
@@ -53,9 +53,20 @@ class UtilTest {
             val recordType = RecordType.EXPENSE
 
             if (withMemo)
-                return Record(recordId = RecordId(recordId), type = recordType, categoryId = category.categoryId, categoryItemId = categoryItem.categoryItemId, date = date!!, amount = RecordAmount(amount!!), memo = "test memo")
+                return Record(recordId = RecordId(recordId),
+                        type = recordType,
+                        categoryId = category.categoryId,
+                        categoryItemId = categoryItem.categoryItemId,
+                        date = date!!,
+                        amount = RecordAmount(amount!!),
+                        memo = "test memo")
 
-            return Record(recordId = RecordId(recordId), type = recordType, categoryId = category.categoryId, categoryItemId = categoryItem.categoryItemId, date = date!!, amount = RecordAmount(amount!!))
+            return Record(recordId = RecordId(recordId),
+                    type = recordType,
+                    categoryId = category.categoryId,
+                    categoryItemId = categoryItem.categoryItemId,
+                    date = date!!,
+                    amount = RecordAmount(amount!!))
         }
     }
 }

@@ -39,3 +39,5 @@ data class ModifyRecord(@TargetAggregateIdentifier val accountId: AccountId,
                         val amount: BigDecimal,
                         val memo: String? = "")
 
+data class DeleteRecord(@TargetAggregateIdentifier val accountId: AccountId,
+                        val recordId: RecordId)

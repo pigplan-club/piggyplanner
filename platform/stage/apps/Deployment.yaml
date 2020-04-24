@@ -19,6 +19,8 @@ spec:
             value: stage
           - name: AXON_AXONSERVER_SERVERS
             value: axonserver
+          - name: AXON_AXONSERVER_TOKEN
+            value: e4655a27-6add-4baa-8f7f-17dc7f4abdb3
         image: pigplanclub/piggyplanner-services:stage
         imagePullPolicy: Always
 #        resources:
