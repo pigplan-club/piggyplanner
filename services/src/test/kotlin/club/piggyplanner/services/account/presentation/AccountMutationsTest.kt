@@ -26,31 +26,20 @@ internal class AccountMutationsTest {
 
     @Test
     fun `Create a default Account should be correct`() {
-        val future = CompletableFuture<AccountId>()
+        val future = createCompletableFuture()
         future.complete(AccountId(UUID.randomUUID()))
-        Mockito.`when`(commandGateway.send<AccountId>(any())).thenReturn(future)
 
         val response = accountMutations.createDefaultAccount()
         assertNotNull("Expected AccountId not null", response.get().id)
-        assertEquals("Expected response id equal to the mocked value", response.get().id, future.get().id)
+        assertEquals("Expected response id equal to the mocked value", response.get(), future.get())
     }
 
     @Test
     fun createRecord() {
-        val future = CompletableFuture<Boolean>()
+        val future = createCompletableFuture()
         future.complete(true)
-        Mockito.`when`(commandGateway.send<Boolean>(any())).thenReturn(future)
-        val recordDTO = RecordDTO(accountId = UUID.randomUUID(),
-                recordId = UUID.randomUUID(),
-                recordType = RecordType.INCOME,
-                categoryId = UUID.randomUUID(),
-                categoryItemId = UUID.randomUUID(),
-                year = 2020,
-                month = 1,
-                day = 1,
-                amount = BigDecimal.ONE,
-                memo = "")
 
+        val recordDTO = createRecordDTO()
         val response = accountMutations.createRecord(recordDTO)
         assertNotNull("Expected response not null", response.get())
         assertEquals("Expected response equal to the mocked value", response.get(), future.get())
@@ -58,9 +47,40 @@ internal class AccountMutationsTest {
 
     @Test
     fun modifyRecord() {
+        val future = createCompletableFuture()
+        future.complete(true)
+
+        val recordDTO = createRecordDTO()
+        val response = accountMutations.modifyRecord(recordDTO)
+        assertNotNull("Expected response not null", response.get())
+        assertEquals("Expected response equal to the mocked value", response.get(), future.get())
     }
 
     @Test
     fun deleteRecord() {
+        val future = createCompletableFuture()
+        future.complete(true)
+
+        val response = accountMutations.deleteRecord(accountId = UUID.randomUUID(), recordId = UUID.randomUUID())
+        assertNotNull("Expected response not null", response.get())
+        assertEquals("Expected response equal to the mocked value", response.get(), future.get())
     }
+
+    private fun createCompletableFuture(): CompletableFuture<Any> {
+        val future = CompletableFuture<Any>()
+        Mockito.`when`(commandGateway.send<Any>(any())).thenReturn(future)
+        return future
+    }
+
+    private fun createRecordDTO() =
+            RecordDTO(accountId = UUID.randomUUID(),
+                    recordId = UUID.randomUUID(),
+                    recordType = RecordType.INCOME,
+                    categoryId = UUID.randomUUID(),
+                    categoryItemId = UUID.randomUUID(),
+                    year = 2020,
+                    month = 1,
+                    day = 1,
+                    amount = BigDecimal.ONE,
+                    memo = "")
 }

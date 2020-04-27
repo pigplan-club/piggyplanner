@@ -69,3 +69,5 @@ a
 Sservices/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt,7/6/76cdfdacfe860bde30706833551f71f6a7e1a381
 O
 platform/dev/docker-compose.yml,d/3/d383e9fbd0c0dec06c5c387dace5d47b7fe1db29
+ê
+`services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountMutationsTest.kt,c/c/ccf330584492ed23a1aad80d8bd02720f1467655
