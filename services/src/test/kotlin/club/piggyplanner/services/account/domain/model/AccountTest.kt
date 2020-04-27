@@ -21,9 +21,9 @@ class AccountTest {
     }
 
     @Test
-    internal fun `Create a default Account`() {
+    internal fun `Create a default Account should be correct`() {
         val userId = UUID.randomUUID()
-        val createDefaultAccountCommand = CreateDefaultAccount(SaverId(userId))
+        val createDefaultAccountCommand = CreateDefaultAccount(UserId(userId))
 
         fixture.registerInjectableResource(accountConfigProperties)
                 .givenNoPriorActivity()
@@ -32,7 +32,7 @@ class AccountTest {
                 .expectEventsMatching(Matchers.payloadsMatching(Matchers.exactSequenceOf(
                         com.shazam.shazamcrest.matcher.Matchers.sameBeanAs(
                                 DefaultAccountCreated(createDefaultAccountCommand.accountId,
-                                        SaverId(userId),
+                                        UserId(userId),
                                         accountConfigProperties.defaultAccountName,
                                         accountConfigProperties.recordsQuotaByMonth,
                                         accountConfigProperties.categoriesQuota,

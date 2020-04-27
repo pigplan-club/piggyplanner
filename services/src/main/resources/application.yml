@@ -4,7 +4,6 @@ account:
   categories-quota: 10
   category-items-quota: 80
 
-
 spring:
   application:
     name: Services

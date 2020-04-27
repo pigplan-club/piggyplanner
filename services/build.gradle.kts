@@ -1,16 +1,25 @@
+import info.solidsoft.gradle.pitest.PitestTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.2.5.RELEASE"
+    id("org.springframework.boot") version "2.2.6.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
-    id("com.google.cloud.tools.jib") version "2.1.0"
-    kotlin("jvm") version "1.3.61"
-    kotlin("plugin.spring") version "1.3.61"
+    id("com.google.cloud.tools.jib") version "2.2.0"
+    id("info.solidsoft.pitest") version "1.4.7"
+    kotlin("jvm") version "1.3.71"
+    kotlin("plugin.spring") version "1.3.71"
+    jacoco
 }
 
 group = "club.piggyplanner"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+configurations {
+    compileOnly {
+        extendsFrom(configurations.annotationProcessor.get())
+    }
+}
 
 repositories {
     mavenCentral()
@@ -50,30 +59,56 @@ dependencies {
 
     //Axon framework testing
     testImplementation("org.axonframework:axon-test:4.3.1")
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "1.8"
-    }
+    //Pitest extension for junit5
+    testImplementation("org.pitest:pitest-junit5-plugin:0.12")
 }
 
 jib {
     to {
         image = "pigplanclub/piggyplanner-services"
-        tags = setOf(System.getenv("BUILD_VERSION")?:"$version")
+        tags = setOf(System.getenv("BUILD_VERSION") ?: "$version")
     }
 }
 
 tasks {
-    test {
+    withType<Test> {
+        useJUnitPlatform()
         if (System.getenv("EXCLUDE_IT") == "true") {
             exclude("**/presentation*")
         }
+        finalizedBy(jacocoTestReport)
+    }
+
+    withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "1.8"
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.isEnabled = true
+            xml.destination  = File("$buildDir/reports/jacoco/report.xml")
+            csv.isEnabled = false
+            html.isEnabled = true
+        }
+        executionData(File("build/jacoco/test.exec"))
+    }
+
+    withType<PitestTask> {
+        testPlugin.set("junit5")
+        threads.set(1)
+        outputFormats.set(setOf("HTML"))
+        mutators.set(setOf("DEFAULTS"))
+//        mutators.set(setOf("STRONGER", "DEFAULTS", "ALL"))
+        avoidCallsTo.set(setOf("kotlin.jvm.internal", "kotlinx.coroutines"))
+        targetClasses.set(setOf("club.piggyplanner.services.*"))
+//        targetClasses.set(setOf("club.piggyplanner.services.account.domain.*"))
+    }
+
+    named("build") {
+        dependsOn("test")
     }
 }

@@ -3,8 +3,8 @@ version: '3.1'
 services:
   axonserver:
     image: axoniq/axonserver
-    volumes:
-      - ./axon-server-data:/eventdata
+#    volumes:
+#      - ./axon-server-data:/eventdata
     environment:
       - AXONSERVER_HOSTNAME=axonserver
     ports:
@@ -14,8 +14,8 @@ services:
       - axon
   mongo:
     image: mongo
-    volumes:
-      - ./mongo-data:/data/db
+#    volumes:
+#      - ./mongo-data:/data/db
     restart: always
     ports:
       - 27017:27017

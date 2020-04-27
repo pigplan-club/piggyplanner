@@ -6,9 +6,15 @@ import club.piggyplanner.services.common.domain.model.EntityState
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.EntityId
 
-class Category(@EntityId val categoryId: CategoryId,
-               var name: String) : Entity() {
-    var categoryItems = mutableListOf<CategoryItem>()
+class Category(@EntityId val categoryId: CategoryId) : Entity() {
+
+    lateinit var name: String private set
+    var categoryItems = mutableSetOf<CategoryItem>()
+        private set
+
+    constructor(categoryId: CategoryId, name: String) : this(categoryId) {
+        this.name = name
+    }
 
     @EventSourcingHandler
     fun on(event: CategoryItemCreated) {
@@ -25,8 +31,8 @@ class Category(@EntityId val categoryId: CategoryId,
     fun getCategoryItem(categoryItemIdToFind: CategoryItemId) =
             categoryItems.find { categoryItem -> categoryItem.categoryItemId == categoryItemIdToFind }
 
-    fun getCategoryItem(categoryItemNameToFind: String) =
-            categoryItems.find { categoryItem -> categoryItem.name == categoryItemNameToFind }
+    fun containsCategoryItem(categoryItemToFind: CategoryItem) =
+            categoryItems.contains(categoryItemToFind)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -45,6 +51,4 @@ class Category(@EntityId val categoryId: CategoryId,
         result = 31 * result + name.hashCode()
         return result
     }
-
-
 }

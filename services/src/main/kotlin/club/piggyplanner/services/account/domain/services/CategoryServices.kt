@@ -8,8 +8,8 @@ import club.piggyplanner.services.account.domain.services.CategoryServices.Defau
 import java.util.*
 
 
+@Suppress("unused")
 internal class CategoryServices {
-
     enum class DefaultCategoriesItems {
         ELECTRICITY,
         WATER,
@@ -22,25 +22,21 @@ internal class CategoryServices {
     enum class DefaultCategories(val categoryItems: List<DefaultCategoriesItems>) {
         UTILITY(mutableListOf(ELECTRICITY, WATER, GAS)),
         FOOD(mutableListOf(BREAKFAST, LUNCH, DINNER))
+    }
+}
 
+fun getDefaultCategories(): List<Category> =
+        CategoryServices.DefaultCategories.values().map { createDefaultCategory(it) }
+
+private fun createDefaultCategory(defaultCategory: CategoryServices.DefaultCategories): Category {
+    val category = Category(CategoryId(UUID.randomUUID()), defaultCategory.name)
+    defaultCategory.categoryItems.forEach { item ->
+        category.addCategoryItem(
+                CategoryItem(
+                        CategoryItemId(UUID.randomUUID()),
+                        item.name
+                ))
     }
 
-    companion object {
-        fun getDefaultCategories(): List<Category> =
-                DefaultCategories.values().map { it -> createDefaultCategory(it) }
-
-
-        private fun createDefaultCategory(defaultCategory: DefaultCategories): Category {
-            val category = Category(CategoryId(UUID.randomUUID()), defaultCategory.name)
-            defaultCategory.categoryItems.forEach { item ->
-                category.addCategoryItem(
-                        CategoryItem(
-                                CategoryItemId(UUID.randomUUID()),
-                                item.name
-                        ))
-            }
-
-            return category
-        }
-    }
+    return category
 }

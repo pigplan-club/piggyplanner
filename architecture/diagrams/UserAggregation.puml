@@ -1,27 +1,30 @@
 @startuml
-class User <<Aggregate>> {
-  userId: userId
-  username: String
-  salt: String
+class Saver <<Aggregate>> {
+  accountsQuota
 }
 class UserId<<ValueObject>>{
-  id: UUID
+  userId: UUID
 }
-class Account<<Entity>> {
+class Account<<Aggregate>> {
   accountId: AccountId
   name: String
+  recordsQuotaByMonth: Int
+  categoriesQuota: Int
+  categoryItemsQuota: Int
 }
 class AccountId<<ValueObject>>{
   id: UUID
 }
 class Record<<Entity>> {
-  recordId: RecordId
   date: LocalDate
-  value: BigDecimal
+  amount: RecordAmount
   memo: String
 }
 class RecordId<<ValueObject>>{
   id: UUID
+}
+class RecordAmount<<ValueObject>>{
+  value: BigDecimal
 }
 class Category<<Entity>> {
   categoryId: CategoryId
@@ -30,31 +33,32 @@ class Category<<Entity>> {
 class CategoryId<<ValueObject>>{
   id: UUID
 }
+class CategoryItem<<Entity>> {
+  categoryItemId: CategoryItemId
+  name: String
+}
+class CategoryItemId<<ValueObject>>{
+  id: UUID
+}
 enum RecordType{
   INCOME
   EXPENSE
 }
-class Planning<<Entity>> {
-  planningId: PlanningId
-  iniDate: LocalDate
-  endDate: LocalDate
-}
-class PlanningId<<ValueObject>>{
-  id: UUID
-}
-class PlanningCategory {
-  plannedValue: BigDecimal
-}
 
-UserId -* User
-User "1" o-- "1..*" Account
-AccountId -* Account
-Account "1" o-- "*" Record
-Account "1" - "*" Planning
+UserId -* Saver
+Saver "1" o-- "1..*" Account
+
+Account *- AccountId
+Account "1" -- "*" Record
+Account "1" --- "*" Category
+
 RecordId -* Record
-Record "1" - "1" Category
-Record "*" - "1" RecordType
-(Planning, Category) . PlanningCategory
-Planning *- PlanningId
-CategoryId -* Category
+Record *- RecordType
+RecordAmount "*" -- "1" Record
+Record *-- CategoryItem
+
+Category *- CategoryId
+
+CategoryItemId -* CategoryItem
+CategoryItem "*" -o "1" Category
 @enduml

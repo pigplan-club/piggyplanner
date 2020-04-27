@@ -1,13 +1,13 @@
 package club.piggyplanner.services.account.domain.operations
 
 import club.piggyplanner.services.account.domain.model.*
-import club.piggyplanner.services.account.domain.services.CategoryServices.Companion.getDefaultCategories
+import club.piggyplanner.services.account.domain.services.getDefaultCategories
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
-data class CreateDefaultAccount(@TargetAggregateIdentifier val saverId: SaverId) {
+data class CreateDefaultAccount(@TargetAggregateIdentifier val userId: UserId) {
     val accountId: AccountId = AccountId(UUID.randomUUID())
     val categories: List<Category> = getDefaultCategories()
 }
@@ -39,3 +39,5 @@ data class ModifyRecord(@TargetAggregateIdentifier val accountId: AccountId,
                         val amount: BigDecimal,
                         val memo: String? = "")
 
+data class DeleteRecord(@TargetAggregateIdentifier val accountId: AccountId,
+                        val recordId: RecordId)

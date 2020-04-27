@@ -18,11 +18,4 @@ class AxonConfig {
                     .mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build())
                     .serializer(JacksonSerializer.builder().build())
                     .build()
-
-
-//    @Bean
-//    fun sagaStore(client: MongoClient): SagaStore<*> = MongoSagaStore.builder()
-//            .mongoTemplate(DefaultMongoTemplate.builder().mongoDatabase(client).build())
-//            .serializer(JacksonSerializer.builder().build())
-//            .build()
 }

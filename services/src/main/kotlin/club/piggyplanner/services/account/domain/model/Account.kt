@@ -11,14 +11,13 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.modelling.command.AggregateMember
 import org.axonframework.spring.stereotype.Aggregate
 import java.time.LocalDate
-import java.util.*
 
 @Aggregate(snapshotTriggerDefinition = "accountSnapshotTriggerDefinition")
 class Account() : Entity() {
 
     @AggregateIdentifier
     private lateinit var accountId: AccountId
-    private lateinit var saverId: SaverId
+    private lateinit var userId: UserId
     private lateinit var name: String
 
     private var recordsQuotaByMonth: Int = -1
@@ -26,16 +25,16 @@ class Account() : Entity() {
     private var categoryItemsQuota: Int = -1
 
     @AggregateMember
-    private val records = mutableListOf<Record>()
+    private val records = mutableSetOf<Record>()
 
     @AggregateMember
-    private val categories = mutableListOf<Category>()
+    private val categories = mutableSetOf<Category>()
 
     @CommandHandler
     constructor(command: CreateDefaultAccount, accountConfigProperties: AccountConfigProperties) : this() {
         AggregateLifecycle.apply(DefaultAccountCreated(
                 command.accountId,
-                command.saverId,
+                command.userId,
                 accountConfigProperties.defaultAccountName,
                 accountConfigProperties.recordsQuotaByMonth,
                 accountConfigProperties.categoriesQuota,
@@ -47,21 +46,14 @@ class Account() : Entity() {
 
     @CommandHandler
     fun handle(command: CreateCategory): Boolean {
-        if (categories.find { category -> category.categoryId == command.categoryId } != null)
-            throw CategoryAlreadyAddedException()
-
-        if (categories.find { category -> category.name.toLowerCase() == command.name.toLowerCase() } != null)
-            throw CategoryAlreadyAddedException()
-
         if (categories.filter { it.state == EntityState.ENABLED }.size >= this.categoriesQuota)
             throw CategoriesQuotaExceededException()
 
-        AggregateLifecycle.apply(CategoryCreated(command.accountId,
-                Category(
-                        command.categoryId,
-                        command.name
-                )))
+        val newCategory = Category(command.categoryId, command.name)
+        if (categories.contains(newCategory))
+            throw CategoryAlreadyAddedException()
 
+        AggregateLifecycle.apply(CategoryCreated(command.accountId, newCategory))
         return true
     }
 
@@ -73,29 +65,23 @@ class Account() : Entity() {
         if (category.wasExceededQuota(this.categoryItemsQuota))
             throw CategoryItemsQuotaExceededException()
 
-        if (category.getCategoryItem(command.categoryItemId) != null)
-            throw CategoryItemAlreadyAddedException()
-
-        if (category.getCategoryItem(command.name) != null)
+        val newCategoryItem = CategoryItem(command.categoryItemId, command.name)
+        if (category.containsCategoryItem(newCategoryItem))
             throw CategoryItemAlreadyAddedException()
 
         AggregateLifecycle.apply(CategoryItemCreated(command.accountId,
-                command.categoryId,
-                CategoryItem(
-                        command.categoryItemId,
-                        command.name
-                )))
+                command.categoryId, newCategoryItem))
 
         return true
     }
 
     @CommandHandler
     fun handle(command: CreateRecord): Boolean {
-        if (records.find { record -> record.recordId == command.recordId } != null)
-            throw RecordAlreadyAddedException()
-
         if (numberRecordsForSelectedMonth(command.date) >= recordsQuotaByMonth)
             throw RecordsQuotaExceededException()
+
+        if (records.find { record -> record.recordId == command.recordId } != null)
+            throw RecordAlreadyAddedException()
 
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
@@ -103,11 +89,11 @@ class Account() : Entity() {
                 ?: throw CategoryItemNotFoundException(command.categoryItemId.id)
 
         AggregateLifecycle.apply(RecordCreated(command.accountId,
-                command.categoryId,
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
-                        categoryItem = categoryItem,
+                        categoryId = category.categoryId,
+                        categoryItemId = categoryItem.categoryItemId,
                         date = command.date,
                         amount = RecordAmount(command.amount),
                         memo = command.memo)))
@@ -116,6 +102,9 @@ class Account() : Entity() {
 
     @CommandHandler
     fun handle(command: ModifyRecord): Boolean {
+        if (records.find { record -> record.recordId == command.recordId } == null)
+            throw RecordNotFoundException(command.recordId.id)
+
         val category = categories.find { category -> category.categoryId == command.categoryId }
                 ?: throw CategoryNotFoundException(command.categoryId.id)
         val categoryItem = category.getCategoryItem(command.categoryItemId)
@@ -125,17 +114,29 @@ class Account() : Entity() {
                 Record(
                         recordId = command.recordId,
                         type = command.recordType,
-                        categoryItem = categoryItem,
+                        categoryId = category.categoryId,
+                        categoryItemId = categoryItem.categoryItemId,
                         date = command.date,
                         amount = RecordAmount(command.amount),
                         memo = command.memo)))
         return true
     }
 
+    @CommandHandler
+    fun handle(command: DeleteRecord): Boolean {
+        if (records.find { record -> record.recordId == command.recordId } == null)
+            throw RecordNotFoundException(command.recordId.id)
+
+        AggregateLifecycle.apply(RecordDeleted(command.accountId,
+                command.recordId))
+
+        return true
+    }
+
     @EventSourcingHandler
     fun on(event: DefaultAccountCreated) {
         this.accountId = event.accountId
-        this.saverId = event.saverId
+        this.userId = event.userId
         this.name = event.accountName
         this.recordsQuotaByMonth = event.recordsQuotaByMonth
         this.categoriesQuota = event.categoriesQuota
@@ -150,6 +151,12 @@ class Account() : Entity() {
     @EventSourcingHandler
     fun on(event: RecordCreated) {
         this.records.add(event.record)
+    }
+
+    @EventSourcingHandler
+    fun on(event: RecordDeleted) {
+        val record = this.records.find { record -> record.recordId == event.recordId }
+        this.records.remove(record)
     }
 
     private fun numberRecordsForSelectedMonth(date: LocalDate): Int {

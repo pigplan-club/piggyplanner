@@ -14,4 +14,4 @@ jobs:
 
       - name: Test and build
         working-directory: ./services
-        run: ./gradlew test build
+        run: ./gradlew build
