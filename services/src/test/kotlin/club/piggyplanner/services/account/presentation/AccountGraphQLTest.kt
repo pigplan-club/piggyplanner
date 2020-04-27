@@ -16,7 +16,7 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 
 @SpringBootTest
-internal class AccountMutationsTest {
+internal class AccountGraphQLTest {
 
     @MockBean
     private lateinit var commandGateway: CommandGateway

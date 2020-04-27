@@ -1,7 +1,7 @@
 package club.piggyplanner.services.account.domain.operations
 
 import club.piggyplanner.services.account.domain.model.*
-import club.piggyplanner.services.account.domain.services.CategoryServices.Companion.getDefaultCategories
+import club.piggyplanner.services.account.domain.services.getDefaultCategories
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import java.math.BigDecimal
 import java.time.LocalDate

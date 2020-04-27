@@ -13,6 +13,8 @@ import java.math.BigDecimal
 import java.time.LocalDate
 import java.util.*
 
+private const val NEW_MEMO = "New memo"
+
 class RecordTest {
     private lateinit var fixture: FixtureConfiguration<Account>
 
@@ -59,7 +61,7 @@ class RecordTest {
                 categoryId = record.categoryId,
                 categoryItemId = record.categoryItemId,
                 amount = RecordAmount(BigDecimal.TEN),
-                memo = "New memo")
+                memo = NEW_MEMO)
 
         val modifyRecordCommand = ModifyRecord(
                 accountId = AccountId(UtilTest.accountId),
@@ -152,7 +154,7 @@ class RecordTest {
                 categoryId = record.categoryId,
                 categoryItemId = record.categoryItemId,
                 amount = RecordAmount(BigDecimal.TEN),
-                memo = "New memo")
+                memo = NEW_MEMO)
 
 
         val newRecordId = UUID.randomUUID()
@@ -185,7 +187,7 @@ class RecordTest {
                 categoryId = record.categoryId,
                 categoryItemId = record.categoryItemId,
                 amount = RecordAmount(BigDecimal.TEN),
-                memo = "New memo")
+                memo = NEW_MEMO)
 
         val modifyRecordCommand = ModifyRecord(
                 accountId = AccountId(UUID.randomUUID()),
@@ -287,7 +289,7 @@ class RecordTest {
                 categoryId = UtilTest.category.categoryId,
                 categoryItemId = UtilTest.categoryItem.categoryItemId,
                 amount = RecordAmount(BigDecimal.TEN),
-                memo = "New memo")
+                memo = NEW_MEMO)
 
         val modifyRecordCommand = ModifyRecord(
                 accountId = AccountId(UtilTest.accountId),
@@ -316,7 +318,7 @@ class RecordTest {
                 categoryId = UtilTest.category.categoryId,
                 categoryItemId = UtilTest.categoryItem.categoryItemId,
                 amount = RecordAmount(BigDecimal.TEN),
-                memo = "New memo")
+                memo = NEW_MEMO)
 
         val newCategoryItemId = CategoryItemId(UUID.randomUUID())
         val modifyRecordCommand = ModifyRecord(

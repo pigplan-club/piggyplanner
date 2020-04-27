@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.util.*
 
+private const val CATEGORY_NAME = "Category test"
+
 class CategoryTest {
     private lateinit var fixture: FixtureConfiguration<Account>
 
@@ -163,7 +165,7 @@ class CategoryTest {
     @Test
     internal fun `Category items when category is created should be empty`() {
         val categoryId = CategoryId(UUID.randomUUID())
-        val category = Category(categoryId, "Category test")
+        val category = Category(categoryId, CATEGORY_NAME)
 
         assertTrue("Category Items are ampty", category.categoryItems.isEmpty())
         assertEquals("Category Items is a mutable set", category.categoryItems, mutableSetOf<CategoryItem>())
@@ -172,9 +174,9 @@ class CategoryTest {
     @Test
     internal fun `Compare Category equality`() {
         val categoryId = CategoryId(UUID.randomUUID())
-        val category1 = Category(categoryId, "Category test")
-        val category2 = Category(categoryId, "Category test")
-        val category3 = Category(CategoryId(UUID.randomUUID()), "Category test")
+        val category1 = Category(categoryId, CATEGORY_NAME)
+        val category2 = Category(categoryId, CATEGORY_NAME)
+        val category3 = Category(CategoryId(UUID.randomUUID()), CATEGORY_NAME)
         val category4 = Category(categoryId, "Category test 2")
         val list = mutableSetOf(category1, category3)
 
@@ -194,7 +196,7 @@ class CategoryTest {
         val categoryItemId = CategoryItemId(UUID.randomUUID())
         val categoryItem1 = CategoryItem(categoryItemId, "Category Item test")
         val categoryItem2 = CategoryItem(categoryItemId, "Category Item test")
-        val categoryItem3 = CategoryItem(CategoryItemId(UUID.randomUUID()), "Category test")
+        val categoryItem3 = CategoryItem(CategoryItemId(UUID.randomUUID()), CATEGORY_NAME)
         val categoryItem4 = CategoryItem(categoryItemId, "Category Item test 2")
         val list = mutableSetOf(categoryItem1, categoryItem3)
 

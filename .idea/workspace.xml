@@ -20,12 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/301d7b377f0208e27ac001e6668e56e34796e8f9" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/301d7b377f0208e27ac001e6668e56e34796e8f9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/9/797c6259e842b9e4c41c5862804c2746509ebb59" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/9/797c6259e842b9e4c41c5862804c2746509ebb59" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/4/a4efbce7dc7f12a4b320948d892bbd8c297dfea3" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/4/a4efbce7dc7f12a4b320948d892bbd8c297dfea3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountMutationsTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountMutationsTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,17 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Dev - Pig Plan &lt;dev@pigplan.club&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupGrunt">
+      <scroll-view-position x="0" y="0" />
+    </layout>
   </component>
   <component name="ProjectId" id="1ZxrponnA50MgthMUF2VVe3vReq" />
   <component name="ProjectViewState">
@@ -83,6 +93,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -123,7 +134,7 @@
       <recent name="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/repository" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AccountMutationsTest">
+  <component name="RunManager" selected="Spring Boot.ServicesApplication">
     <configuration name="AccountMutationsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -230,9 +241,9 @@
       <item itemvalue="Gradle.AccountMutationsTest.createRecord" />
       <item itemvalue="Gradle.AccountMutationsTest.Create a default Account should be correct" />
       <item itemvalue="Gradle.AccountMutationsTest" />
-      <item itemvalue="Spring Boot.ServicesApplication" />
       <item itemvalue="Gradle.AccountMutationsTest.modifyRecord" />
       <item itemvalue="Gradle.AccountMutationsTest.deleteRecord" />
+      <item itemvalue="Spring Boot.ServicesApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -283,8 +294,17 @@
       <workItem from="1587932427461" duration="196000" />
       <workItem from="1587932677428" duration="2482000" />
       <workItem from="1587940864864" duration="699000" />
-      <workItem from="1587948223645" duration="1713000" />
+      <workItem from="1587948223645" duration="4128000" />
+      <workItem from="1588023765680" duration="36000" />
     </task>
+    <task id="LOCAL-00001" summary="PP-6 Add unit test for modify and delete record">
+      <created>1587950366969</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587950366969</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +331,14 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="PP-6 Add unit test for modify and delete record" />
+    <option name="LAST_COMMIT_MESSAGE" value="PP-6 Add unit test for modify and delete record" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="429" y="144" width="732" height="637" key="#Inspections" timestamp="1586642111098">
@@ -366,10 +394,10 @@
     </state>
     <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1586575432732" />
     <state x="510" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/45.27.1555.873@45.27.1555.873" timestamp="1587219520381" />
-    <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2" timestamp="1587941393150">
+    <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2" timestamp="1587950366797">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
-    <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2/45.27.1555.873@45.27.1555.873" timestamp="1587941393150" />
+    <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2/45.27.1555.873@45.27.1555.873" timestamp="1587950366797" />
     <state width="693" height="506" key="DebuggerActiveHint" timestamp="1587177785304">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
@@ -384,55 +412,55 @@
     </state>
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1586050740140" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
-    <state width="1554" height="415" key="GridCell.Tab.0.bottom" timestamp="1587949879165">
+    <state width="1554" height="415" key="GridCell.Tab.0.bottom" timestamp="1587956097215">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.bottom/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1554" height="415" key="GridCell.Tab.0.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587949879165" />
-    <state width="1554" height="415" key="GridCell.Tab.0.center" timestamp="1587949879165">
+    <state width="1554" height="415" key="GridCell.Tab.0.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587956097215" />
+    <state width="1554" height="415" key="GridCell.Tab.0.center" timestamp="1587956097214">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.center/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1554" height="415" key="GridCell.Tab.0.center/45.27.1555.873@45.27.1555.873" timestamp="1587949879165" />
-    <state width="1554" height="415" key="GridCell.Tab.0.left" timestamp="1587949879164">
+    <state width="1554" height="415" key="GridCell.Tab.0.center/45.27.1555.873@45.27.1555.873" timestamp="1587956097214" />
+    <state width="1554" height="415" key="GridCell.Tab.0.left" timestamp="1587956097214">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1586722803260" />
     <state width="1829" height="409" key="GridCell.Tab.0.left/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1554" height="415" key="GridCell.Tab.0.left/45.27.1555.873@45.27.1555.873" timestamp="1587949879164" />
-    <state width="1554" height="415" key="GridCell.Tab.0.right" timestamp="1587949879165">
+    <state width="1554" height="415" key="GridCell.Tab.0.left/45.27.1555.873@45.27.1555.873" timestamp="1587956097214" />
+    <state width="1554" height="415" key="GridCell.Tab.0.right" timestamp="1587956097215">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1586722803262" />
     <state width="1829" height="409" key="GridCell.Tab.0.right/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988993949" />
-    <state width="1554" height="415" key="GridCell.Tab.0.right/45.27.1555.873@45.27.1555.873" timestamp="1587949879165" />
-    <state width="1509" height="342" key="GridCell.Tab.1.bottom" timestamp="1587697792181">
+    <state width="1554" height="415" key="GridCell.Tab.0.right/45.27.1555.873@45.27.1555.873" timestamp="1587956097215" />
+    <state width="1554" height="415" key="GridCell.Tab.1.bottom" timestamp="1587956097216">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1586722616432" />
-    <state width="1509" height="342" key="GridCell.Tab.1.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587697792181" />
-    <state width="1509" height="342" key="GridCell.Tab.1.center" timestamp="1587697792177">
+    <state width="1554" height="415" key="GridCell.Tab.1.bottom/45.27.1555.873@45.27.1555.873" timestamp="1587956097216" />
+    <state width="1554" height="415" key="GridCell.Tab.1.center" timestamp="1587956097215">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1586722616432" />
-    <state width="1509" height="342" key="GridCell.Tab.1.center/45.27.1555.873@45.27.1555.873" timestamp="1587697792177" />
-    <state width="1509" height="342" key="GridCell.Tab.1.left" timestamp="1587697792175">
+    <state width="1554" height="415" key="GridCell.Tab.1.center/45.27.1555.873@45.27.1555.873" timestamp="1587956097215" />
+    <state width="1554" height="415" key="GridCell.Tab.1.left" timestamp="1587956097215">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1586722616431" />
-    <state width="1509" height="342" key="GridCell.Tab.1.left/45.27.1555.873@45.27.1555.873" timestamp="1587697792175" />
-    <state width="1509" height="342" key="GridCell.Tab.1.right" timestamp="1587697792179">
+    <state width="1554" height="415" key="GridCell.Tab.1.left/45.27.1555.873@45.27.1555.873" timestamp="1587956097215" />
+    <state width="1554" height="415" key="GridCell.Tab.1.right" timestamp="1587956097216">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state width="1554" height="315" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1586722616432" />
-    <state width="1509" height="342" key="GridCell.Tab.1.right/45.27.1555.873@45.27.1555.873" timestamp="1587697792179" />
-    <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog" timestamp="1587354674461">
+    <state width="1554" height="415" key="GridCell.Tab.1.right/45.27.1555.873@45.27.1555.873" timestamp="1587956097216" />
+    <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog" timestamp="1587955932232">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="383" y="199" width="824" height="526" key="IDE.errors.dialog/0.27.1600.873@0.27.1600.873" timestamp="1586657367034" />
-    <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog/45.27.1555.873@45.27.1555.873" timestamp="1587354674461" />
+    <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog/45.27.1555.873@45.27.1555.873" timestamp="1587955932232" />
     <state x="606" y="399" key="ReplaceDuplicatesPrompt" timestamp="1586722220678">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -448,14 +476,14 @@
     <state x="283" y="40" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1586706258820" />
     <state x="283" y="40" width="1024" height="845" key="SettingsEditor/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791939905" />
     <state x="510" y="119" key="SettingsEditor/45.27.1555.873@45.27.1555.873" timestamp="1587941311477" />
-    <state width="498" height="475" key="SwitcherDM" timestamp="1587948704244">
+    <state width="498" height="497" key="SwitcherDM" timestamp="1587955965066">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
-    <state width="498" height="475" key="SwitcherDM/45.27.1555.873@45.27.1555.873" timestamp="1587948704244" />
-    <state x="417" y="198" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587941350058">
+    <state width="498" height="497" key="SwitcherDM/45.27.1555.873@45.27.1555.873" timestamp="1587955965066" />
+    <state x="417" y="198" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587950383476">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
-    <state x="417" y="198" width="800" height="528" key="Vcs.Push.Dialog.v2/45.27.1555.873@45.27.1555.873" timestamp="1587941350058" />
+    <state x="417" y="198" width="800" height="528" key="Vcs.Push.Dialog.v2/45.27.1555.873@45.27.1555.873" timestamp="1587950383476" />
     <state width="1553" height="871" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1587346320262">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
@@ -477,12 +505,16 @@
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="324" y="174" width="986" height="647" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/45.27.1555.873@45.27.1555.873" timestamp="1587692995407" />
-    <state x="477" y="201" width="804" height="522" key="find.popup" timestamp="1587224310620">
+    <state x="477" y="201" width="804" height="522" key="find.popup" timestamp="1587955672946">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="445" y="201" width="790" height="522" key="find.popup/0.27.1600.873@0.27.1600.873" timestamp="1586651393109" />
     <state x="445" y="201" width="710" height="522" key="find.popup/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792025382" />
-    <state x="477" y="201" width="804" height="522" key="find.popup/45.27.1555.873@45.27.1555.873" timestamp="1587224310620" />
+    <state x="477" y="201" width="804" height="522" key="find.popup/45.27.1555.873@45.27.1555.873" timestamp="1587955672946" />
+    <state x="696" y="321" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup" timestamp="1587955949190">
+      <screen x="45" y="27" width="1555" height="873" />
+    </state>
+    <state x="696" y="321" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/45.27.1555.873@45.27.1555.873" timestamp="1587955949190" />
     <state x="0" y="65" width="1590" height="796" key="new project wizard" timestamp="1585791853345">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -496,19 +528,20 @@
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="471" y="181" width="700" height="530" key="recent.locations.popup/45.27.1555.873@45.27.1555.873" timestamp="1587948700486" />
-    <state x="630" y="235" width="330" height="455" key="refactoring.ChangeSignatureDialog" timestamp="1586653310453">
-      <screen x="0" y="27" width="1600" height="873" />
+    <state x="657" y="235" width="325" height="455" key="refactoring.ChangeSignatureDialog" timestamp="1587955402708">
+      <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="630" y="235" width="330" height="455" key="refactoring.ChangeSignatureDialog/0.27.1600.873@0.27.1600.873" timestamp="1586653310453" />
+    <state x="657" y="235" width="325" height="455" key="refactoring.ChangeSignatureDialog/45.27.1555.873@45.27.1555.873" timestamp="1587955402708" />
     <state x="486" y="208" key="run.anything.popup" timestamp="1587693278433">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="486" y="208" key="run.anything.popup/45.27.1555.873@45.27.1555.873" timestamp="1587693278433" />
-    <state x="650" y="126" width="672" height="678" key="search.everywhere.popup" timestamp="1587948837442">
+    <state x="650" y="126" width="672" height="678" key="search.everywhere.popup" timestamp="1587956075320">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="463" y="212" width="672" height="678" key="search.everywhere.popup/0.27.1600.873@0.27.1600.873" timestamp="1586722744153" />
-    <state x="650" y="126" width="672" height="678" key="search.everywhere.popup/45.27.1555.873@45.27.1555.873" timestamp="1587948837442" />
+    <state x="650" y="126" width="672" height="678" key="search.everywhere.popup/45.27.1555.873@45.27.1555.873" timestamp="1587956075320" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
