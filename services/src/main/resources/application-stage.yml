@@ -1,9 +1,0 @@
-spring:
-  data:
-    mongodb:
-      authentication-database: admin
-      database: piggyplanner
-      host: mongodb
-      password: admin
-      port: 27017
-      username: admin

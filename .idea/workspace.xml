@@ -19,13 +19,100 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="">
+    <list default="true" id="ad754026-f3e9-4329-a863-980880eb490f" name="Default Changelist" comment="PP-6 Add unit test for modify and delete record">
+      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/piggyplanner-services" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build_master.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/pull_request.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/b/0bfd5354b0f2da1ff8962ec04467d28e6ed92596" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/c/0cfd6bc46efbdfe64a36acf41cfbf2c77a44d26c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/6/160f1f00cd437e37f5c849bd57d933d29c42b7b7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/7/179f5678e5d38cc95488deb2adf581547bb92fab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/1/219b01afef470f45fd83ce77b640db0d93ab61fb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/301d7b377f0208e27ac001e6668e56e34796e8f9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/2/42f22dd7478c8270fb4c0b9935a6da2b26191ddd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/6/4623f12c855208571a4fc091b37b12a10e1c4cdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/8/48ff254f78584a1e30e2caf7681a5b46003fde42" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/547dfef89a3112b86446ba01456d2d8f96d0ee60" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/6/56469784b0413b761406d6b3780c159339603675" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/6660424ab379090eb6be5abc5f963162adbaeb82" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/7600a1a2c0186f68215a7b522583a5b3629dcc56" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/76cdfdacfe860bde30706833551f71f6a7e1a381" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/9/797c6259e842b9e4c41c5862804c2746509ebb59" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/a/7a06b75d0ebb7cdbf79778fb7c8a9d2b7e2295d8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/c/7cdd5766d0e4381901b28f94896ca9c5dec16f27" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/3/83d87423ae36322d58d7c73726a05aabd6cb5542" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/6/86fc4da9f63338700dee4a146698c1e447b93c07" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/f/8f5b92abc0322560acad235716d50652e97469e8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/4/a4efbce7dc7f12a4b320948d892bbd8c297dfea3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/a/aaf8401e851cd9dc8d546e1d4136141758091423" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/b/ab65a6f2c232dc9a5a1dbb2e08755ccedd18f3bf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/1/b1439c3606a8cfcbb7ebf3316b5495c94b787d63" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b3e40f99762b2856524d90518969d2343df87034" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/c/bc0572ad2d661f9fa22653cb4f5d3afa00a45c3b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/c/ccf330584492ed23a1aad80d8bd02720f1467655" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/e/ce9145ed404807c1d6ed291ea71d3582c14ffb7f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/f/df9aa5e11bc67f9bd6a58b8c62fc9b2394c82caa" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/eb06700cc65e56b93b42aa00411b939623a2c9ba" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/1/f1d337315c5a424da66c801b50c1ea1a46774e00" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/5/f58b92d4ac7f7fcaa02743029b2ec5ca64544923" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/9/f972ee2a5bcd559dfc1d6a748780148fb95dc3d5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fbee59c5cdc4d928a600f7dac75f9a71aacfb4ab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/d/fdb87624edfba2d91eb115bdfc278c55104c20b4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/architecture/diagrams/PlanningAggregation.puml" beforeDir="false" afterPath="$PROJECT_DIR$/assets/architecture/diagrams/PlanningAggregation.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/architecture/diagrams/UserAggregation.puml" beforeDir="false" afterPath="$PROJECT_DIR$/assets/architecture/diagrams/UserAggregation.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/MoneySaving.ai" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/MoneySaving.ai" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/MoneySaving.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/MoneySaving.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/ideas.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/ideas.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/piggy.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/piggy.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logo/piggyBank.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/design/logo/piggyBank.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/ServicesApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/application/AccountService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Account.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Category.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/CategoryItem.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Enums.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Exceptions.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/Record.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/model/ValueObjects.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/commands.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/events.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/operations/queries.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/projections/AccountProjectors.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/domain/services/CategoryServices.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigProperties.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/config/AccountConfigurations.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/repository/AccountProjectionTypes.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/repository/AccountRepositories.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQL.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/presentation/DTOs.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/domain/model/Entity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/domain/model/Enums.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/infrastructure.config/AxonConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/common/infrastructure.config/GraphQLConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/resources/application-stage.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/main/resources/banner.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/ServicesApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/AccountTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/CategoryTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/RecordTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/domain/model/utils/UtilTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/kotlin/club/piggyplanner/services/account/presentation/AccountGraphQLTest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/src/test/resources/application.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +120,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/piggyplanner-services">
+      <ProjectState />
+    </projectState>
     <projectState path="$PROJECT_DIR$/services">
       <ProjectState />
     </projectState>
@@ -45,12 +135,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="services" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -80,6 +165,7 @@
     </layout>
   </component>
   <component name="ProjectId" id="1ZxrponnA50MgthMUF2VVe3vReq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -100,7 +186,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/architecture/diagrams" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/piggyplanner-services" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -134,126 +220,21 @@
       <recent name="$PROJECT_DIR$/services/src/main/kotlin/club/piggyplanner/services/account/infrastructure/repository" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ServicesApplication">
-    <configuration name="AccountMutationsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.presentation.AccountMutationsTest&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AccountMutationsTest.Create a default Account should be correct" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.presentation.AccountMutationsTest.Create a default Account should be correct&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AccountMutationsTest.createRecord" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.presentation.AccountMutationsTest.createRecord&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AccountMutationsTest.deleteRecord" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.presentation.AccountMutationsTest.deleteRecord&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="AccountMutationsTest.modifyRecord" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/services" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;club.piggyplanner.services.account.presentation.AccountMutationsTest.modifyRecord&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="services.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="club.piggyplanner.services.ServicesApplication" />
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="PiggyPlannerServicesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="piggyplanner-services.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="club.pigplan.piggyplanner.PiggyPlannerServicesApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Gradle.AccountMutationsTest.createRecord" />
-      <item itemvalue="Gradle.AccountMutationsTest.Create a default Account should be correct" />
-      <item itemvalue="Gradle.AccountMutationsTest" />
-      <item itemvalue="Gradle.AccountMutationsTest.modifyRecord" />
-      <item itemvalue="Gradle.AccountMutationsTest.deleteRecord" />
-      <item itemvalue="Spring Boot.ServicesApplication" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.AccountMutationsTest" />
-        <item itemvalue="Gradle.AccountMutationsTest.Create a default Account should be correct" />
-        <item itemvalue="Gradle.AccountMutationsTest.deleteRecord" />
-        <item itemvalue="Gradle.AccountMutationsTest.modifyRecord" />
-        <item itemvalue="Gradle.AccountMutationsTest.createRecord" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -295,7 +276,11 @@
       <workItem from="1587932677428" duration="2482000" />
       <workItem from="1587940864864" duration="699000" />
       <workItem from="1587948223645" duration="4128000" />
-      <workItem from="1588023765680" duration="36000" />
+      <workItem from="1588023765680" duration="982000" />
+      <workItem from="1588027667878" duration="70000" />
+      <workItem from="1588028204340" duration="454000" />
+      <workItem from="1588043590873" duration="420000" />
+      <workItem from="1588044336992" duration="176000" />
     </task>
     <task id="LOCAL-00001" summary="PP-6 Add unit test for modify and delete record">
       <created>1587950366969</created>
@@ -353,10 +338,11 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="533" y="220" width="524" height="484" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.27.1600.873@0.27.1600.873" timestamp="1586568228798" />
-    <state x="287" y="216" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587259879947">
+    <state x="287" y="216" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588044511617">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="258" y="120" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1586566223473" />
+    <state x="287" y="216" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.457.1600.900/45.27.1555.873@45.27.1555.873" timestamp="1588044511617" />
     <state x="287" y="216" key="#com.intellij.execution.impl.EditConfigurationsDialog/45.27.1555.873@45.27.1555.873" timestamp="1587259879947" />
     <state x="128" y="27" width="1390" height="873" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1587178177929">
       <screen x="45" y="27" width="1555" height="873" />
@@ -394,9 +380,10 @@
     </state>
     <state x="478" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1586575432732" />
     <state x="510" y="237" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/45.27.1555.873@45.27.1555.873" timestamp="1587219520381" />
-    <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2" timestamp="1587950366797">
-      <screen x="45" y="27" width="1555" height="873" />
+    <state x="155" y="97" width="1479" height="911" key="CommitChangelistDialog2" timestamp="1588024004590">
+      <screen x="45" y="484" width="1875" height="596" />
     </state>
+    <state x="155" y="97" width="1479" height="911" key="CommitChangelistDialog2/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1588024004590" />
     <state x="361" y="27" width="1142" height="873" key="CommitChangelistDialog2/45.27.1555.873@45.27.1555.873" timestamp="1587950366797" />
     <state width="693" height="506" key="DebuggerActiveHint" timestamp="1587177785304">
       <screen x="45" y="27" width="1555" height="873" />
@@ -407,11 +394,12 @@
     </state>
     <state x="145" y="98" width="1675" height="882" key="DiffContextDialog/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1586988886396" />
     <state x="128" y="27" width="1390" height="873" key="DiffContextDialog/45.27.1555.873@45.27.1555.873" timestamp="1587524600542" />
-    <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586050740140">
-      <screen x="0" y="27" width="1600" height="873" />
+    <state x="612" y="220" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588044457883">
+      <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/0.27.1600.873@0.27.1600.873" timestamp="1586050740140" />
     <state x="583" y="220" width="424" height="484" key="FileChooserDialogImpl/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585792516590" />
+    <state x="612" y="220" key="FileChooserDialogImpl/1920.457.1600.900/45.27.1555.873@45.27.1555.873" timestamp="1588044457883" />
     <state width="1554" height="415" key="GridCell.Tab.0.bottom" timestamp="1587956097215">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
@@ -456,11 +444,16 @@
     </state>
     <state width="1554" height="315" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1586722616432" />
     <state width="1554" height="415" key="GridCell.Tab.1.right/45.27.1555.873@45.27.1555.873" timestamp="1587956097216" />
-    <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog" timestamp="1587955932232">
-      <screen x="45" y="27" width="1555" height="873" />
+    <state x="494" y="554" width="994" height="526" key="IDE.errors.dialog" timestamp="1588027694991">
+      <screen x="45" y="484" width="1875" height="596" />
     </state>
     <state x="383" y="199" width="824" height="526" key="IDE.errors.dialog/0.27.1600.873@0.27.1600.873" timestamp="1586657367034" />
+    <state x="494" y="554" width="994" height="526" key="IDE.errors.dialog/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1588027694991" />
     <state x="417" y="199" width="824" height="520" key="IDE.errors.dialog/45.27.1555.873@45.27.1555.873" timestamp="1587955932232" />
+    <state x="607" y="224" width="819" height="507" key="NewModule_or_Project.wizard" timestamp="1588044459938">
+      <screen x="45" y="27" width="1555" height="873" />
+    </state>
+    <state x="607" y="224" width="819" height="507" key="NewModule_or_Project.wizard/1920.457.1600.900/45.27.1555.873@45.27.1555.873" timestamp="1588044459938" />
     <state x="606" y="399" key="ReplaceDuplicatesPrompt" timestamp="1586722220678">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
@@ -470,15 +463,17 @@
     </state>
     <state x="526" y="155" width="538" height="614" key="RollbackChangesDialog/0.27.1600.873@0.27.1600.873" timestamp="1585880767122" />
     <state x="556" y="155" width="552" height="633" key="RollbackChangesDialog/45.27.1555.873@45.27.1555.873" timestamp="1587941383513" />
-    <state x="510" y="119" width="1024" height="845" key="SettingsEditor" timestamp="1587941311477">
+    <state x="207" y="53" width="1024" height="845" key="SettingsEditor" timestamp="1588044468676">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="283" y="40" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1586706258820" />
     <state x="283" y="40" width="1024" height="845" key="SettingsEditor/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791939905" />
+    <state x="207" y="53" width="1024" height="845" key="SettingsEditor/1920.457.1600.900/45.27.1555.873@45.27.1555.873" timestamp="1588044468676" />
     <state x="510" y="119" key="SettingsEditor/45.27.1555.873@45.27.1555.873" timestamp="1587941311477" />
-    <state width="498" height="497" key="SwitcherDM" timestamp="1587955965066">
-      <screen x="45" y="27" width="1555" height="873" />
+    <state width="601" height="475" key="SwitcherDM" timestamp="1588023914164">
+      <screen x="45" y="484" width="1875" height="596" />
     </state>
+    <state width="601" height="475" key="SwitcherDM/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1588023914164" />
     <state width="498" height="497" key="SwitcherDM/45.27.1555.873@45.27.1555.873" timestamp="1587955965066" />
     <state x="417" y="198" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1587950383476">
       <screen x="45" y="27" width="1555" height="873" />
@@ -515,10 +510,11 @@
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="696" y="321" width="250" height="278" key="jetbrains.javascript.buildTools.run-task-popup/45.27.1555.873@45.27.1555.873" timestamp="1587955949190" />
-    <state x="0" y="65" width="1590" height="796" key="new project wizard" timestamp="1585791853345">
-      <screen x="0" y="27" width="1600" height="873" />
+    <state x="45" y="65" width="1590" height="796" key="new project wizard" timestamp="1588043868096">
+      <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="0" y="65" width="1590" height="796" key="new project wizard/1920.457.1600.900/0.27.1600.873@0.27.1600.873" timestamp="1585791853345" />
+    <state x="45" y="65" key="new project wizard/1920.457.1600.900/45.27.1555.873@45.27.1555.873" timestamp="1588043868096" />
     <state x="494" y="179" width="655" height="566" key="org.jetbrains.kotlin.idea.testIntegration.KotlinCreateTestDialog" timestamp="1587696961014">
       <screen x="45" y="27" width="1555" height="873" />
     </state>
@@ -537,10 +533,11 @@
       <screen x="45" y="27" width="1555" height="873" />
     </state>
     <state x="486" y="208" key="run.anything.popup/45.27.1555.873@45.27.1555.873" timestamp="1587693278433" />
-    <state x="650" y="126" width="672" height="678" key="search.everywhere.popup" timestamp="1587956075320">
-      <screen x="45" y="27" width="1555" height="873" />
+    <state x="775" y="552" width="811" height="463" key="search.everywhere.popup" timestamp="1588023915909">
+      <screen x="45" y="484" width="1875" height="596" />
     </state>
     <state x="463" y="212" width="672" height="678" key="search.everywhere.popup/0.27.1600.873@0.27.1600.873" timestamp="1586722744153" />
+    <state x="775" y="552" width="811" height="463" key="search.everywhere.popup/1920.457.1600.900/45.484.1875.596@45.484.1875.596" timestamp="1588023915909" />
     <state x="650" y="126" width="672" height="678" key="search.everywhere.popup/45.27.1555.873@45.27.1555.873" timestamp="1587956075320" />
   </component>
   <component name="XDebuggerManager">
