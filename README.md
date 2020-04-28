@@ -1,6 +1,6 @@
 # Piggy Planner Project
 
-**Piggy planner services Status**
+**Piggy planner Services Status**
 
 ![build_master](https://github.com/pigplan-club/piggyplanner-services/workflows/build_master/badge.svg?branch=master)
 
