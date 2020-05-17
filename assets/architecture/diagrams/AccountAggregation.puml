@@ -1,0 +1,64 @@
+@startuml
+class Saver <<Aggregate>> {
+  accountsQuota
+}
+class UserId<<ValueObject>>{
+  userId: UUID
+}
+class Account<<Aggregate>> {
+  accountId: AccountId
+  name: String
+  recordsQuotaByMonth: Int
+  categoriesQuota: Int
+  categoryItemsQuota: Int
+}
+class AccountId<<ValueObject>>{
+  id: UUID
+}
+class Record<<Entity>> {
+  date: LocalDate
+  amount: RecordAmount
+  memo: String
+}
+class RecordId<<ValueObject>>{
+  id: UUID
+}
+class RecordAmount<<ValueObject>>{
+  value: BigDecimal
+}
+class Category<<Entity>> {
+  categoryId: CategoryId
+  name: String
+}
+class CategoryId<<ValueObject>>{
+  id: UUID
+}
+class CategoryItem<<Entity>> {
+  categoryItemId: CategoryItemId
+  name: String
+}
+class CategoryItemId<<ValueObject>>{
+  id: UUID
+}
+enum RecordType{
+  INCOME
+  EXPENSE
+}
+
+UserId -* Saver
+Saver "1" o-- "1..*" Account
+
+Account *- AccountId
+Account "1" -- "*" Record
+Account "1" --- "*" Category
+
+RecordId -* Record
+Record *- RecordType
+RecordAmount "*" -- "1" Record
+Record *-- CategoryItem
+
+Category *- CategoryId
+
+CategoryItemId -* CategoryItem
+CategoryItem "*" -o "1" Category
+@enduml
