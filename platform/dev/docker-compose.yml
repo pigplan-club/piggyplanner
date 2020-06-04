@@ -4,14 +4,15 @@ services:
   axonserver:
     image: axoniq/axonserver
 #    volumes:
-#      - ./axon-server-data:/eventdata
+#      - ./axon-server/eventdata:/eventdata
+#      - ./axon-server/data:/data
     environment:
       - AXONSERVER_HOSTNAME=axonserver
     ports:
       - 8024:8024
       - 8124:8124
     networks:
-      - axon
+      - pigplan
   mongo:
     image: mongo
 #    volumes:
@@ -23,8 +24,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
     networks:
-      - axon
+      - pigplan
 
 networks:
-  axon:
+  pigplan:
     driver: bridge

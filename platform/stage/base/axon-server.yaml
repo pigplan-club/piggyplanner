@@ -35,8 +35,8 @@ spec:
           volumeMounts:
             - name: eventstore
               mountPath: /eventdata
-            - name: data
-              mountPath: /data
+#            - name: data
+#              mountPath: /data
           readinessProbe:
             httpGet:
               port: 8024
@@ -52,13 +52,13 @@ spec:
         resources:
           requests:
             storage: 1Gi
-    - metadata:
-        name: data
-      spec:
-        accessModes: [ "ReadWriteOnce" ]
-        resources:
-          requests:
-            storage: 1Gi
+#    - metadata:
+#        name: data
+#      spec:
+#        accessModes: [ "ReadWriteOnce" ]
+#        resources:
+#          requests:
+#            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
