@@ -27,7 +27,7 @@ spec:
               value: "true"
             - name: AXONIQ_AXONSERVER_ACCESSCONTROL_TOKEN
               value: e4655a27-6add-4baa-8f7f-17dc7f4abdb3
-          image: axoniq/axonserver
+          image: axoniq/axonserver:4.4
           imagePullPolicy: Always
           ports:
             - name: grpc
